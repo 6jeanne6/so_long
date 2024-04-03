@@ -122,7 +122,7 @@ ${NAME}: ${OBJ}
 ${OBJDIR}/%.o: ${SRCDIR}/%.c
 	@mkdir -p ${dir $@}
 	@${CC} ${CFLAG} -c $< -o $@
-	@echo "${GREEN}***  Compilation success  ***"
+	@echo "${GREEN}***  LIBFT: Compilation success  ***"
 
 clean: 
 	@rm -rf ${OBJDIR}

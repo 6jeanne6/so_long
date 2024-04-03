@@ -10,8 +10,9 @@ CC		= cc
 #                                 Include                                      #
 ################################################################################
 
-INCDIR = include
-INC	= ${INCDIR}/so_long.h
+INCDIR 	 = include
+INC	   	 = ${INCDIR}/so_long.h
+INCLUDES = -I ${INCDIR} -I./${LIBFT_PATH}include -I./${MINILBX_PATH}
 
 ################################################################################
 #                                 Libft                                        #
@@ -19,7 +20,15 @@ INC	= ${INCDIR}/so_long.h
 
 LIBFT_FILE	= libft/libft.a
 LIBFT_PATH	= libft/
-LFLAG = -L./${LIBFT_PATH} -lft
+LFLAG 		= -L./${LIBFT_PATH} -lft
+
+################################################################################
+#                              MiniLibx                                        #
+################################################################################
+
+MINILBX_FILE	= mlx-linux/libmlx_Linux.a
+MINILBX_PATH	= mlx-linux/
+MLXFLAG 		= -L./${MINILBX_PATH} -lmlx -lXext -lX11 -lm
 
 ################################################################################
 #                                 Sources                                      #
@@ -27,8 +36,8 @@ LFLAG = -L./${LIBFT_PATH} -lft
 
 SRCDIR = srcs
 
-SRC = ${SRCDIR}/main.c \
-		${SRCDIR}/manage_map/map_check.c \
+SRC =	${SRCDIR}/main.c \
+		#${SRCDIR}/manage_map/map_check.c \
 
 ################################################################################
 #                                   Objects                                    #
@@ -36,37 +45,40 @@ SRC = ${SRCDIR}/main.c \
 
 OBJDIR = objs
 
-OBJ = ${SRC:${SRCDIR}/%.c=${OBJDIR}/%.o}
+OBJ    = ${SRC:${SRCDIR}/%.c=${OBJDIR}/%.o}
 
 ################################################################################
 #                                   Colors                                     #
 ################################################################################
 
-BLACK = \033[0;30m
-RED = \033[0;31m
-GREEN = \033[0;32m
-YELLOW = \033[0;33m
-BLUE = \033[0;34m
-PURPLE = \033[0;35m
-CYAN = \033[0;36m
+BLACK 	= \033[0;30m
+RED 	= \033[0;31m
+GREEN 	= \033[0;32m
+YELLOW 	= \033[0;33m
+BLUE 	= \033[0;34m
+PURPLE 	= \033[0;35m
+CYAN 	= \033[0;36m
 
 ################################################################################
 #                                    Rules                                     #
 ################################################################################
 
-all: ${LIBFT_FILE} ${NAME}
+all: ${LIBFT_FILE} ${MINILBX_FILE} ${NAME}
 
 ${NAME} : ${OBJ} 
-	@${CC} ${CFLAG} -I ${INCDIR} -I./${LIBFT_PATH}include ${OBJ} ${LFLAG} -o ${NAME}
+	@${CC} ${CFLAG} ${INCLUDES} ${OBJ} ${LFLAG} ${MLXFLAG} -o ${NAME}
 	@echo "${YELLOW}✰✰✰ Alright, you can use ${NAME} ✰✰✰ :D"
 
 ${OBJDIR}/%.o: ${SRCDIR}/%.c
 	@mkdir -p ${dir $@}
-	@${CC} ${CFLAG} -I./include -I./${LIBFT_PATH}include -c $< -o $@
-	@echo "${GREEN}***  Compilation success  ***"
+	@${CC} ${CFLAG} ${INCLUDES} -c $< -o $@
+	@echo "${GREEN}***  SO_LONG: compilation success  ***"
 
 ${LIBFT_FILE} :
 	@make -sC libft
+
+${MINILBX_FILE} :
+	@make -sC mlx-linux
 
 clean: 
 	@rm -rf ${OBJDIR}
