@@ -34,10 +34,11 @@ MLXFLAG 		= -L./${MINILBX_PATH} -lmlx -lXext -lX11 -lm
 #                                 Sources                                      #
 ################################################################################
 
-SRCDIR = srcs
+SRCDIR 	= srcs
 
-SRC =	${SRCDIR}/main.c \
-		#${SRCDIR}/manage_map/map_check.c \
+SRC		=	${SRCDIR}/main.c \
+			${SRCDIR}/manage_map/map_parsing.c \
+			${SRCDIR}/manage_map/map_error.c \
 
 ################################################################################
 #                                   Objects                                    #
