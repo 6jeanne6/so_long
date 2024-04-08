@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:48:31 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/05 18:11:48 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/08 19:53:25 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	main(int argc, char **argv)
 	int	x = TILE_SIZE;
 	int y = TILE_SIZE;
 
-	check_map(argc, argv, &mlx);
+	map_init(argc, argv, &mlx);
+	map_parsing(&mlx);
 	mlx.mlx_ptr = mlx_init();
 	if (!mlx.mlx_ptr)
 		return (0);
@@ -30,7 +31,7 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img.mlx_img, 85, 70);
 	// mlx_destroy_image(mlx.mlx_ptr, img.mlx_img);
 	// mlx_destroy_window(mlx.mlx_ptr, mlx.win_ptr);
-	//free(mlx.mlx_ptr);
+	// free(mlx.mlx_ptr);
 	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }

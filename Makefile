@@ -37,6 +37,7 @@ MLXFLAG 		= -L./${MINILBX_PATH} -lmlx -lXext -lX11 -lm
 SRCDIR 	= srcs
 
 SRC		=	${SRCDIR}/main.c \
+			${SRCDIR}/manage_map/map_init.c \
 			${SRCDIR}/manage_map/map_parsing.c \
 			${SRCDIR}/manage_map/map_error.c \
 

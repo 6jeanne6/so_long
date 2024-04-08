@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:53:50 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/05 18:47:55 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/08 18:16:09 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,14 @@ typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	char	**map;
 }				t_mlx;
 
 // **********************************
 // *         Parsing functions      *
 // **********************************
 
-void	check_map(int argc, char **argv, t_mlx *so_long);
+void	map_init(int argc, char **argv, t_mlx *so_long);
 
 // **********************************
 // *         Error functions        *
