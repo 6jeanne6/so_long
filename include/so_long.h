@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:53:50 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/09 14:03:42 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/12 19:30:44 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,26 +81,56 @@
 typedef struct s_image
 {
 	void	*mlx_img;
+
 	char	*addr;
+
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
+
 }				t_image;
 
 typedef struct s_character
 {
 	int		pos_x;
 	int		pos_y;
-	t_image	*image;
-}				t_character;
+
+	t_image	*sprite;
+
+}				t_chara;
+
+typedef struct s_exit
+{
+	int		pos_x;
+	int		pos_y;
+
+	t_image	*exit_open;
+	t_image	*exit_close;
+
+}				t_exit;
+
+typedef struct s_collectible
+{
+	int		pos_x;
+	int		pos_y;
+	int		collectibles;
+
+	t_image	*jiggy;
+
+}				t_collec;
 
 typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+
 	char	**map;
+
 	int		row;
 	int		column;
+
 }				t_mlx;
 
 // **********************************
@@ -109,13 +139,13 @@ typedef struct s_mlx
 
 void	map_init(int argc, char **argv, t_mlx *so_long);
 void	map_parsing(t_mlx *so_long);
-
+void	map_set_things(t_mlx *so_long);
 
 // **********************************
 // *         Error functions        *
 // **********************************
 
 void	message_error(char *message);
-
+void	free_tab_str(char **tab);
 
 #endif 

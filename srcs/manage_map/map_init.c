@@ -6,11 +6,26 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:55:15 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/08 18:49:48 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/12 17:20:19 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static	int	space_or_tab(char *map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		if (map[i] == ' ' || map[i] == '\t' || map[0] != '1')
+			return (-1);
+		i++;
+	}
+	return (1);
+}
+//check if character is space or tab
 
 static char	**lets_split(char *map)
 {
@@ -34,20 +49,24 @@ static char	**gnl_and_join(int fd)
 		return (NULL);
 	big_map = ft_strdup_gnl("");
 	if (!big_map)
-		return (NULL);
+		return (free(map), NULL);
 	while (map)
 	{
+		if (space_or_tab(map) == -1)
+			return (free(big_map), free(map), NULL);
 		big_map = ft_strjoin_gnl(big_map, map);
 		if (!big_map || big_map[0] == '\0')
-			return (free(big_map), NULL);
+			return (free(map), NULL);
 		free(map);
 		map = get_next_line(fd);
 	}
 	splitted_map = lets_split(big_map);
+	if (!splitted_map)
+		return (NULL);
 	free(big_map);
 	return (splitted_map);
 }
-//take all the content of map.ber and transform it to a char*
+// take all the content of map.ber and transform it to a char*
 // → gnl and strjoin each line to read and have all the content
 // → then split it by \n
 
@@ -56,12 +75,20 @@ void	map_init(int argc, char **argv, t_mlx *so_long)
 	int		fd;
 
 	fd = 0;
+	so_long->map = NULL;
 	if (argc != 2)
 		message_error("Error\nHey listen! Only 2 arguments\n");
+	if (!(ft_strstr(argv[1], ".ber")))
+		message_error("Error\nPlease use a .ber map\n");
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		message_error("Error\nYour file cannot be opened...\n");
 	so_long->map = gnl_and_join(fd);
+	if (so_long->map == NULL)
+	{
+		close(fd);
+		message_error("Error\nHmm your map is kind of weird\n");
+	}
 	close(fd);
 }
 //check if arguments and map are good and take map content

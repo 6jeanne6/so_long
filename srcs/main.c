@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:48:31 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/09 14:06:17 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/12 18:58:19 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 int	main(int argc, char **argv)
 {
-	t_mlx	mlx;
+	t_mlx	so_long;
 	t_image	img;
 	int	x = TILE_SIZE;
 	int y = TILE_SIZE;
 
-	map_init(argc, argv, &mlx);
-	map_parsing(&mlx);
-	mlx.mlx_ptr = mlx_init();
-	if (!mlx.mlx_ptr)
+	map_init(argc, argv, &so_long);
+	map_parsing(&so_long);
+	map_set_things(&so_long);
+	so_long.mlx_ptr = mlx_init();
+	if (!so_long.mlx_ptr)
 		return (0);
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, x * 5, y * 5, "Super Renko");
-	if (!mlx.win_ptr)
+	so_long.win_ptr = mlx_new_window(so_long.mlx_ptr, x * 5, y * 5, "Super Renko");
+	if (!so_long.win_ptr)
 		return (0);
-	img.mlx_img = mlx_xpm_file_to_image(mlx.mlx_ptr, RENKO_DOWN, &x, &y);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img.mlx_img, 85, 70);
+	img.mlx_img = mlx_xpm_file_to_image(so_long.mlx_ptr, RENKO_DOWN, &x, &y);
+	mlx_put_image_to_window(so_long.mlx_ptr, so_long.win_ptr, img.mlx_img, 85, 70);
 	// mlx_destroy_image(mlx.mlx_ptr, img.mlx_img);
 	// mlx_destroy_window(mlx.mlx_ptr, mlx.win_ptr);
 	// free(mlx.mlx_ptr);
-	mlx_loop(mlx.mlx_ptr);
+	mlx_loop(so_long.mlx_ptr);
 	return (0);
 }
 

@@ -6,11 +6,22 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:25:24 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/09 16:32:11 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/12 15:13:19 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_tab_str(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
+}
+//free array and double array
 
 void	message_error(char *message)
 {

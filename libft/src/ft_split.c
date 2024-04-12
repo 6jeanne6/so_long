@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:38:10 by jewu              #+#    #+#             */
-/*   Updated: 2024/02/11 14:52:31 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/12 14:24:24 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,19 @@ static size_t	count_words(char const *str, char c)
 	return (word);
 }
 
-static	void	free_me(char **str)
+static	void	free_me(char **str, int word)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != 0)
+	while (i < word)
 	{
 		free(str[i]);
+		str[i] = NULL;
 		i++;
 	}
 	free(str);
+	str = NULL;
 }
 
 static int	print_words(char **dest, char *str, char c)
@@ -65,7 +67,7 @@ static int	print_words(char **dest, char *str, char c)
 		{
 			dest[word] = malloc(sizeof(char) * (end - start + 2));
 			if (!dest[word])
-				return (free_me(dest), 0);
+				return (free_me(dest, word), 0);
 			ft_strlcpy(dest[word], str + start, end - start + 2);
 			word++;
 		}

@@ -40,6 +40,7 @@ SRC		=	${SRCDIR}/main.c \
 			${SRCDIR}/manage_map/map_init.c \
 			${SRCDIR}/manage_map/map_parsing.c \
 			${SRCDIR}/manage_map/map_error.c \
+			${SRCDIR}/manage_map/map_path.c \
 
 ################################################################################
 #                                   Objects                                    #
