@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:53:50 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/12 19:30:44 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/16 19:19:10 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <errno.h> //perror
 # include "libft.h"
 # include "mlx.h"
+# include <X11/Xlib.h>
+# include <X11/keysym.h>
 
 // **********************************
 // *     We need colors to debug    *
@@ -48,11 +50,13 @@
 
 # define WALL	"images/xpm/Brique.xpm"
 # define WALL2	"images/xpm/Brique2.xpm"
+# define WALL3	"images/xpm/Wall.xpm"
+# define WALL4	"images/xpm/Wall2.xpm"
 
-# define JIGGY	"images/xpm/Collectible_jiggy.xpm"
+# define JIGGY	"images/xpm/Collectible-jiggy.xpm"
 
-# define ENEMY_DOWN	"images/xpm/Enemy.xpm"
-# define ENEMY_UP	"images/xpm/Enemy_back.xpm"
+# define ENEMY_DOWN	"images/xpm/Enemy_down.xpm"
+# define ENEMY_UP	"images/xpm/Enemy_up.xpm"
 # define ENEMY_LEFT	"images/xpm/Enemy_left.xpm"
 # define ENEMY_RIGHT	"images/xpm/Enemy_right.xpm"
 
@@ -78,6 +82,13 @@
 // *       Structures are cool      *
 // **********************************
 
+typedef struct s_position
+{
+	int		x;
+	int		y;
+
+}				t_pos;
+
 typedef struct s_image
 {
 	void	*mlx_img;
@@ -94,42 +105,49 @@ typedef struct s_image
 
 typedef struct s_character
 {
-	int		pos_x;
-	int		pos_y;
+	t_pos		pos;
 
-	t_image	*sprite;
+	t_image		*left;
+	t_image		*right;
+	t_image		*up;
+	t_image		*down;
 
 }				t_chara;
 
 typedef struct s_exit
 {
-	int		pos_x;
-	int		pos_y;
+	t_pos		pos;
 
-	t_image	*exit_open;
-	t_image	*exit_close;
+	t_image		*exit_open;
+	t_image		*exit_close;
 
 }				t_exit;
 
 typedef struct s_collectible
 {
-	int		pos_x;
-	int		pos_y;
-	int		collectibles;
+	t_pos		pos;
 
-	t_image	*jiggy;
+	int			**position;
+
+	t_image		*jiggy;
 
 }				t_collec;
 
 typedef struct s_mlx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void		*mlx_ptr;
+	void		*win_ptr;
 
-	char	**map;
+	char		**map;
+	char		**map_tmp;
 
-	int		row;
-	int		column;
+	int			row;
+	int			column;
+	int			collectibles;
+
+	t_collec	*c;
+	t_chara		*p;
+	t_exit		*e;
 
 }				t_mlx;
 
@@ -147,5 +165,22 @@ void	map_set_things(t_mlx *so_long);
 
 void	message_error(char *message);
 void	free_tab_str(char **tab);
+
+// **********************************
+// *         Game and images        *
+// **********************************
+
+void	load_images(t_mlx *so_long);
+void	free_images(t_mlx *so_long);
+
+int		close_everything(t_mlx *so_long);
+
+// **********************************
+// *           Movements            *
+// **********************************
+
+int		handle_keypress(int key, t_mlx *so_long);
+
+void	move_up(t_mlx *so_long, t_chara *p);
 
 #endif 

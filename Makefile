@@ -41,6 +41,9 @@ SRC		=	${SRCDIR}/main.c \
 			${SRCDIR}/manage_map/map_parsing.c \
 			${SRCDIR}/manage_map/map_error.c \
 			${SRCDIR}/manage_map/map_path.c \
+			${SRCDIR}/sprites/images_init.c \
+			${SRCDIR}/sprites/close_and_free.c \
+			${SRCDIR}/action/move.c \
 
 ################################################################################
 #                                   Objects                                    #
