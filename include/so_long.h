@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:53:50 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/16 19:19:10 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/17 19:22:32 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,15 +126,19 @@ typedef struct s_exit
 typedef struct s_collectible
 {
 	t_pos		pos;
+	t_image		*jiggy;
 
 	int			**position;
-
-	t_image		*jiggy;
 
 }				t_collec;
 
 typedef struct s_mlx
 {
+	t_image		**tab_img;
+	t_collec	*c;
+	t_chara		*p;
+	t_exit		*e;
+
 	void		*mlx_ptr;
 	void		*win_ptr;
 
@@ -144,10 +148,8 @@ typedef struct s_mlx
 	int			row;
 	int			column;
 	int			collectibles;
-
-	t_collec	*c;
-	t_chara		*p;
-	t_exit		*e;
+	int			current_i;
+	int			current_j;
 
 }				t_mlx;
 
@@ -172,6 +174,8 @@ void	free_tab_str(char **tab);
 
 void	load_images(t_mlx *so_long);
 void	free_images(t_mlx *so_long);
+void	put_images(t_mlx *so_long);
+void	put_player(t_mlx *so_long);
 
 int		close_everything(t_mlx *so_long);
 
@@ -182,5 +186,8 @@ int		close_everything(t_mlx *so_long);
 int		handle_keypress(int key, t_mlx *so_long);
 
 void	move_up(t_mlx *so_long, t_chara *p);
+void	move_down(t_mlx *so_long, t_chara *p);
+void	move_left(t_mlx *so_long, t_chara *p);
+void	move_right(t_mlx *so_long, t_chara *p);
 
 #endif 

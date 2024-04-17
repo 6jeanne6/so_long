@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:55:15 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/16 19:31:07 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/17 19:35:08 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static char	**gnl_and_join(int fd)
 	}
 	splitted_map = lets_split(big_map);
 	if (!splitted_map)
-		return (NULL);
+		return (free(big_map), NULL);
 	free(big_map);
 	return (splitted_map);
 }
@@ -79,22 +79,25 @@ static void	so_long_null(t_mlx *so_long)
 	so_long->row = 0;
 	so_long->column = 0;
 	so_long->collectibles = 0;
-	so_long->p->pos.x = 0;
-	so_long->p->pos.y = 0;
+	so_long->current_i = 0;
+	so_long->current_j = 0;
+	so_long->p = ft_calloc(1, sizeof(t_image));
+	if (!so_long->p)
+		so_long->p = NULL;
+	so_long->c = ft_calloc(1, sizeof(t_image));
+	if (!so_long->c)
+		so_long->c = NULL;
+	so_long->e = ft_calloc(1, sizeof(t_image));
+	if (!so_long->e)
+		so_long->e = NULL;
 }
 //all variables of structure are set to NULL
 
 void	map_init(int argc, char **argv, t_mlx *so_long)
 {
-	int			fd;
-	t_chara		player;
-	t_collec	collectible;
-	t_exit		exit;
+	int	fd;
 
 	fd = 0;
-	so_long->c = &collectible;
-	so_long->p = &player;
-	so_long->e = &exit;
 	so_long_null(so_long);
 	if (argc != 2)
 		message_error("Error\nHey listen! Only 2 arguments\n");

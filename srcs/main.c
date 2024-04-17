@@ -6,11 +6,17 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:48:31 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/16 19:18:35 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/17 18:50:43 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int display(t_mlx *so_long)
+{
+	put_images(so_long);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -36,9 +42,9 @@ int	main(int argc, char **argv)
 		return (0);
 	load_images(&so_long);
 	mlx_key_hook(so_long.win_ptr, &handle_keypress, &so_long);
-	// mlx_destroy_image(mlx.mlx_ptr, img.mlx_img);
-	// mlx_destroy_window(mlx.mlx_ptr, mlx.win_ptr);
-	// free(mlx.mlx_ptr);
+	mlx_hook(so_long.win_ptr, DestroyNotify, StructureNotifyMask, &close_everything,
+        &so_long);
+	mlx_loop_hook(so_long.mlx_ptr, &display, &so_long);
 	mlx_loop(so_long.mlx_ptr);
 	return (0);
 }

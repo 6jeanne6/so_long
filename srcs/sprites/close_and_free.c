@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:41:41 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/16 19:32:16 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/17 17:47:31 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,22 @@ void	free_images(t_mlx *so_long)
 	if (so_long->e->exit_close)
 		mlx_destroy_image(so_long->mlx_ptr, so_long->e->exit_close);
 }
-//free all images
+//destroy content of image and free
 
 int	close_everything(t_mlx *so_long)
 {
-	free_images(so_long);
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < so_long->row)
+	{
+		j = -1;
+		while (++j < so_long->column)
+			mlx_destroy_image(so_long->mlx_ptr, so_long->tab_img[i][j].mlx_img);
+		free(so_long->tab_img[i]);
+	}
+	free(so_long->tab_img);
 	mlx_destroy_window(so_long->mlx_ptr, so_long->win_ptr);
 	mlx_destroy_display(so_long->mlx_ptr);
 	free(so_long->mlx_ptr);
