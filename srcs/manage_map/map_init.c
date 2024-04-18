@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:55:15 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/17 19:35:08 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/18 18:06:05 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ static void	so_long_null(t_mlx *so_long)
 	so_long->collectibles = 0;
 	so_long->current_i = 0;
 	so_long->current_j = 0;
-	so_long->p = ft_calloc(1, sizeof(t_image));
+	so_long->p = ft_calloc(1, sizeof(t_chara));
 	if (!so_long->p)
 		so_long->p = NULL;
-	so_long->c = ft_calloc(1, sizeof(t_image));
+	so_long->c = ft_calloc(1, sizeof(t_collec));
 	if (!so_long->c)
 		so_long->c = NULL;
-	so_long->e = ft_calloc(1, sizeof(t_image));
+	so_long->e = ft_calloc(1, sizeof(t_exit));
 	if (!so_long->e)
 		so_long->e = NULL;
 }

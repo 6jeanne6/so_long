@@ -6,13 +6,13 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:48:31 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/17 18:50:43 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/18 18:15:05 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int display(t_mlx *so_long)
+int	display(t_mlx *so_long)
 {
 	put_images(so_long);
 	return (0);
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	y *= so_long.column;
 	so_long.win_ptr = mlx_new_window(so_long.mlx_ptr, y, x, "Super Renko");
 	if (!so_long.win_ptr)
-		return (0);
+		return (free(so_long.mlx_ptr), 0);
 	load_images(&so_long);
 	mlx_key_hook(so_long.win_ptr, &handle_keypress, &so_long);
 	mlx_hook(so_long.win_ptr, DestroyNotify, StructureNotifyMask, &close_everything,
@@ -48,19 +48,3 @@ int	main(int argc, char **argv)
 	mlx_loop(so_long.mlx_ptr);
 	return (0);
 }
-
-// t_mlx   create_window(int height, int width, char *str)
-// {
-//     void *mlx_ptr;
-
-//     mlx_ptr = mlx_init();
-//     return((t_mlx) {mlx_ptr, mlx_new_window(mlx_ptr, width, height, str)});
-// }
-
-// int    main(void)
-// {
-//     t_mlx    window;
-
-//     window = create_window(500, 500, "Very very long by Bickette");
-//     mlx_loop(window.mlx_ptr);
-// }

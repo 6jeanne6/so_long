@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:20:06 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/17 19:31:38 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/18 18:58:45 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,30 +105,18 @@ static void	all_null(t_chara *p, t_collec *c, t_exit *e)
 {
 	p->pos.x = 0;
 	p->pos.y = 0;
-	// p->left = NULL;
-	// p->right = NULL;
-	// p->up = NULL;
-	// p->down = NULL;
+	p->direction = 0;
 	c->pos.x = 0;
 	c->pos.y = 0;
-	// c->position = NULL;
-	// c->jiggy = NULL;
 	e->pos.x = 0;
 	e->pos.y = 0;
-	// e->exit_open = NULL;
-	// e->exit_close = NULL;
+	e->all_c = 0;
 }
 //set all variables to NULL
 
 void	map_set_things(t_mlx *so_long)
 {
-	// t_chara		player;
-	// t_collec	collec;
-	// t_exit		exit;
-
 	//so_long->map_tmp = so_long->map;
-	// all_null(&player, &collec, &exit);
-	// set_cpe_on_map(so_long, &player, &exit);
 	all_null(so_long->p, so_long->c, so_long->e);
 	set_cpe_on_map(so_long, so_long->p, so_long->e);
 	// fill(so_long->map_tmp, so_long->row, so_long->column, player.pos);

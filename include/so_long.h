@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:53:50 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/17 19:22:32 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/18 18:33:02 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,7 @@ typedef struct s_character
 {
 	t_pos		pos;
 
-	t_image		*left;
-	t_image		*right;
-	t_image		*up;
-	t_image		*down;
+	int			direction;
 
 }				t_chara;
 
@@ -120,6 +117,8 @@ typedef struct s_exit
 
 	t_image		*exit_open;
 	t_image		*exit_close;
+
+	int			all_c;
 
 }				t_exit;
 
@@ -134,7 +133,7 @@ typedef struct s_collectible
 
 typedef struct s_mlx
 {
-	t_image		**tab_img;
+	t_image		*img[9];
 	t_collec	*c;
 	t_chara		*p;
 	t_exit		*e;
@@ -173,9 +172,7 @@ void	free_tab_str(char **tab);
 // **********************************
 
 void	load_images(t_mlx *so_long);
-void	free_images(t_mlx *so_long);
 void	put_images(t_mlx *so_long);
-void	put_player(t_mlx *so_long);
 
 int		close_everything(t_mlx *so_long);
 

@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:25:24 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/12 15:13:19 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/18 14:18:46 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	free_tab_str(char **tab)
 {
 	int	i;
 
-	i = 0;
-	while (tab[i])
-		free(tab[i++]);
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
 	free(tab);
 }
 //free array and double array
