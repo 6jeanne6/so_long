@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 18:38:45 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/18 15:58:43 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/19 15:36:21 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int	same_columns(t_mlx *so_long)
 
 static void	how_many_letter(char a, int *c, int *p, int *e)
 {
+	if (!c || !p || !e)
+		return ;
 	if (a == 'C')
 		(*c)++;
 	else if (a == 'P')
@@ -108,17 +110,17 @@ void	map_parsing(t_mlx *so_long)
 	if (check_letter(so_long) == -1)
 	{	
 		free_tab_str(so_long->map);
-		message_error("Error\nCheck the content of your map\n");
+		message_error("Error\nCheck the content of your map\n", so_long);
 	}
 	if (browse_map(so_long) == -1)
 	{	
 		free_tab_str(so_long->map);
-		message_error("Error\nHow much C, E or P?\n");
+		message_error("Error\nHow much C, E or P?\n", so_long);
 	}
 	if (same_columns(so_long) == -1)
 	{	
 		free_tab_str(so_long->map);
-		message_error("Error\nCheck the content of your map\n");
+		message_error("Error\nCheck the content of your map\n", so_long);
 	}
 }
 //check if map is valid or not

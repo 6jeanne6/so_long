@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 15:21:20 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/18 18:39:26 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/19 15:53:06 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	put_images_player(t_mlx *so_long, char c)
 //display player according to direction 
 //(see handle keypress) and collectible
 
-static void	put_images_exit(t_mlx *so_long, char c)
+void	put_images_exit(t_mlx *so_long, char c)
 {
 	if (c == 'E' && so_long->e->all_c == 0)
 		mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
@@ -52,6 +52,8 @@ static void	put_images_exit(t_mlx *so_long, char c)
 			so_long->img[4]->mlx_img, so_long->current_j * 42,
 			so_long->current_i * 42);
 }
+//display exit according to number of collectibles gathered
+
 void	put_images(t_mlx *so_long)
 {
 	int		i;

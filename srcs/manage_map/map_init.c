@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:55:15 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/18 18:06:05 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/19 15:34:59 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ static char	**gnl_and_join(int fd)
 
 static void	so_long_null(t_mlx *so_long)
 {
+	if (!so_long)
+		return ;
 	so_long->mlx_ptr = NULL;
 	so_long->win_ptr = NULL;
 	so_long->map = NULL;
@@ -100,17 +102,17 @@ void	map_init(int argc, char **argv, t_mlx *so_long)
 	fd = 0;
 	so_long_null(so_long);
 	if (argc != 2)
-		message_error("Error\nHey listen! Only 2 arguments\n");
+		message_error("Error\nHey listen! Only 2 arguments\n", so_long);
 	if (!(ft_strstr(argv[1], ".ber")))
-		message_error("Error\nPlease use a .ber map\n");
+		message_error("Error\nPlease use a .ber map\n", so_long);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		message_error("Error\nYour file cannot be opened...\n");
+		message_error("Error\nYour file cannot be opened...\n", so_long);
 	so_long->map = gnl_and_join(fd);
 	if (so_long->map == NULL)
 	{
 		close(fd);
-		message_error("Error\nHmm your map is kind of weird\n");
+		message_error("Error\nHmm your map is kind of weird\n", so_long);
 	}
 	close(fd);
 }

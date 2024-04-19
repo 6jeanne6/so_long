@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:20:06 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/18 18:58:45 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/19 15:59:47 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,17 @@ static void	set_cpe_on_map(t_mlx *so_long, t_chara *p, t_exit *e)
 //define where is P and E
 //define how many C there are
 
-static void	all_null(t_chara *p, t_collec *c, t_exit *e)
+static void	all_null(t_mlx *so_long, t_chara *p, t_collec *c, t_exit *e)
 {
+	if (!p || !c || !e)
+	{
+		free_tab_str(so_long->map);
+		exit(EXIT_FAILURE);
+	}
 	p->pos.x = 0;
 	p->pos.y = 0;
 	p->direction = 0;
+	p->step = 1;
 	c->pos.x = 0;
 	c->pos.y = 0;
 	e->pos.x = 0;
@@ -117,7 +123,7 @@ static void	all_null(t_chara *p, t_collec *c, t_exit *e)
 void	map_set_things(t_mlx *so_long)
 {
 	//so_long->map_tmp = so_long->map;
-	all_null(so_long->p, so_long->c, so_long->e);
+	all_null(so_long, so_long->p, so_long->c, so_long->e);
 	set_cpe_on_map(so_long, so_long->p, so_long->e);
 	// fill(so_long->map_tmp, so_long->row, so_long->column, player.pos);
 	// int i = -1;

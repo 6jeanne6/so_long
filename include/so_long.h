@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:53:50 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/18 18:33:02 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/19 15:57:47 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@
 
 # define WALL	"images/xpm/Brique.xpm"
 # define WALL2	"images/xpm/Brique2.xpm"
-# define WALL3	"images/xpm/Wall.xpm"
-# define WALL4	"images/xpm/Wall2.xpm"
 
 # define JIGGY	"images/xpm/Collectible-jiggy.xpm"
 
@@ -108,6 +106,7 @@ typedef struct s_character
 	t_pos		pos;
 
 	int			direction;
+	int			step;
 
 }				t_chara;
 
@@ -164,7 +163,7 @@ void	map_set_things(t_mlx *so_long);
 // *         Error functions        *
 // **********************************
 
-void	message_error(char *message);
+void	message_error(char *message, t_mlx *so_long);
 void	free_tab_str(char **tab);
 
 // **********************************
@@ -173,8 +172,13 @@ void	free_tab_str(char **tab);
 
 void	load_images(t_mlx *so_long);
 void	put_images(t_mlx *so_long);
+void	put_images_exit(t_mlx *so_long, char c);
+void	got_exited(t_mlx *so_long, char c);
+
+void	open_exit(t_mlx *so_long);
 
 int		close_everything(t_mlx *so_long);
+void	destroy_so_long(t_mlx *so_long);
 
 // **********************************
 // *           Movements            *

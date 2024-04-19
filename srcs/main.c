@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:48:31 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/18 18:15:05 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/19 15:29:09 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int	main(int argc, char **argv)
 	map_set_things(&so_long);
 	so_long.mlx_ptr = mlx_init();
 	if (!so_long.mlx_ptr)
-	{
-		free(so_long.mlx_ptr);
 		exit(EXIT_FAILURE);
-	}
 	x *= so_long.row;
 	y *= so_long.column;
 	so_long.win_ptr = mlx_new_window(so_long.mlx_ptr, y, x, "Super Renko");
