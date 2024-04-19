@@ -2,17 +2,20 @@
 #                          Makefile configuration                              #
 ################################################################################
 
-NAME	= so_long
-CFLAG	= -Wall -Wextra -Werror -g3
-CC		= cc
+NAME		= so_long
+NAME_BONUS	= so_long_bonus
+CFLAG		= -Wall -Wextra -Werror -g3
+CC			= cc
 
 ################################################################################
 #                                 Include                                      #
 ################################################################################
 
-INCDIR 	 = include
-INC	   	 = ${INCDIR}/so_long.h
-INCLUDES = -I ${INCDIR} -I./${LIBFT_PATH}include -I./${MINILBX_PATH}
+INCDIR 	 		= include
+INC	   	 		= ${INCDIR}/so_long.h
+INCBONUS 		= ${INCDIR}/so_long_bonus.h
+INCLUDES 		= -I ${INCDIR} -I./${LIBFT_PATH}include -I./${MINILBX_PATH}
+INCLUDES_BONUS 	= -I ${INCDIR} -I./${LIBFT_PATH}include -I./${MINILBX_PATH}
 
 ################################################################################
 #                                 Libft                                        #
@@ -34,25 +37,44 @@ MLXFLAG 		= -L./${MINILBX_PATH} -lmlx -lXext -lX11 -lm
 #                                 Sources                                      #
 ################################################################################
 
-SRCDIR 	= srcs
+SRCDIR 		= srcs
 
-SRC		=	${SRCDIR}/main.c \
-			${SRCDIR}/manage_map/map_init.c \
-			${SRCDIR}/manage_map/map_parsing.c \
-			${SRCDIR}/manage_map/map_error.c \
-			${SRCDIR}/manage_map/map_path.c \
-			${SRCDIR}/sprites/images_init.c \
-			${SRCDIR}/sprites/close_and_free.c \
-			${SRCDIR}/action/move.c \
-			${SRCDIR}/action/exit_handle.c \
+SRC			=	${SRCDIR}/mandatory/main.c \
+				${SRCDIR}/mandatory/manage_map/map_init.c \
+				${SRCDIR}/mandatory/manage_map/map_parsing.c \
+				${SRCDIR}/mandatory/manage_map/map_error.c \
+				${SRCDIR}/mandatory/manage_map/map_path.c \
+				${SRCDIR}/mandatory/sprites/images_init.c \
+				${SRCDIR}/mandatory/sprites/close_and_free.c \
+				${SRCDIR}/mandatory/action/move.c \
+				${SRCDIR}/mandatory/action/exit_handle.c \
+
+BONUSDIR	= 	${SRCDIR}/bonus
+
+BONUS_SRC 	=	${BONUSDIR}/main_bonus.c \
+				${BONUSDIR}/manage_map/map_init_bonus.c \
+				${BONUSDIR}/manage_map/map_parsing_bonus.c \
+				${BONUSDIR}/manage_map/map_error_bonus.c \
+				${BONUSDIR}/manage_map/map_path_bonus.c \
+				${BONUSDIR}/mandatory/sprites/images_init_bonus.c \
+				${BONUSDIR}/mandatory/sprites/close_and_free_bonus.c \
+				${BONUSDIR}/mandatory/action/move_bonus.c \
+				${BONUSDIR}/mandatory/action/exit_handle_bonus.c \
+
+
+SRCS_BONUS 	= 	${BONUS_SRC}
 
 ################################################################################
 #                                   Objects                                    #
 ################################################################################
 
-OBJDIR = objs
+OBJDIR 		= objs
 
-OBJ    = ${SRC:${SRCDIR}/%.c=${OBJDIR}/%.o}
+OBJ    		= ${SRC:${SRCDIR}/%.c=${OBJDIR}/%.o}
+
+OBJS 		= ${SRC:${BONUSDIR}/%.c=${OBJDIR}/%.o}
+
+OBJS_BONUS 	= ${OBJS}
 
 ################################################################################
 #                                   Colors                                     #
@@ -81,6 +103,17 @@ ${OBJDIR}/%.o: ${SRCDIR}/%.c
 	@${CC} ${CFLAG} ${INCLUDES} -c $< -o $@
 	@echo "${GREEN}***  SO_LONG: compilation success  ***"
 
+bonus: ${LIBFT_FILE} ${MINILBX_FILE} ${NAME_BONUS}
+
+${NAME_BONUS} : ${OBJS_BONUS}
+	@${CC} ${CFLAG} ${INCLUDES_BONUS} ${OBJS_BONUS} ${LFLAG} ${MLXFLAG} -o ${NAME_BONUS}
+	@echo "${YELLOW}✰✰✰ Bonus has been compiled ✰✰✰ :D"
+
+${OBJDIR}/%.o: ${BONUSDIR}/%.c
+	@mkdir -p ${dir $@}
+	@${CC} ${CFLAG} ${INCLUDES_BONUS} -c $< -o $@
+	@echo "${GREEN}***  Bonus compilation success  ***"
+
 ${LIBFT_FILE} :
 	@make -sC libft
 
@@ -93,11 +126,11 @@ clean:
 	@make clean -C ${LIBFT_PATH}
 
 fclean: clean
-	@rm -f ${NAME}
-	@echo "${BLUE}► Fclean done: ${NAME} has been removed ◄"
+	@rm -f ${NAME} ${NAME_BONUS}
+	@echo "${BLUE}► Fclean done: ${NAME} and ${NAME_BONUS} has been removed ◄"
 	@make fclean -C ${LIBFT_PATH}
 
 re: fclean all
 	@echo "${CYAN}↻↻↻ Makefile has been re'd ↺↺↺ \o/"
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

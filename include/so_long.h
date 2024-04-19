@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:53:50 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/19 15:57:47 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/19 18:54:25 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,13 @@
 // *          Game assets           *
 // **********************************
 
-# define BOMB	"images/xpm/Bomb.xpm"
-
 # define WALL	"images/xpm/Brique.xpm"
 # define WALL2	"images/xpm/Brique2.xpm"
 
 # define JIGGY	"images/xpm/Collectible-jiggy.xpm"
 
-# define ENEMY_DOWN	"images/xpm/Enemy_down.xpm"
-# define ENEMY_UP	"images/xpm/Enemy_up.xpm"
-# define ENEMY_LEFT	"images/xpm/Enemy_left.xpm"
-# define ENEMY_RIGHT	"images/xpm/Enemy_right.xpm"
-
 # define EXIT_CLOSED	"images/xpm/Exit_closed.xpm"
 # define EXIT_OPENED	"images/xpm/Exit_open.xpm"
-
-# define EXPLOSION	"images/xpm/Explosion.xpm"
-
-# define VOID	"images/xpm/Purple_Nebula_08.xpm"
 
 # define RENKO_DOWN	"images/xpm/Renko_down.xpm"
 # define RENKO_LEFT	"images/xpm/Renko_left.xpm"
