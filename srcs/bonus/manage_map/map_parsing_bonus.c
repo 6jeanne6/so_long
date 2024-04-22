@@ -6,13 +6,13 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:10:08 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/19 19:10:12 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/22 17:13:26 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-static int	same_columns(t_mlx *so_long)
+static int	same_columns_b(t_mlx *so_long)
 {
 	int	i;
 	int	column;
@@ -31,7 +31,7 @@ static int	same_columns(t_mlx *so_long)
 }
 //check if map has equal amount of columns
 
-static void	how_many_letter(char a, int *c, int *p, int *e)
+static void	how_many_letter_b(char a, int *c, int *p, int *e)
 {
 	if (!c || !p || !e)
 		return ;
@@ -46,7 +46,7 @@ static void	how_many_letter(char a, int *c, int *p, int *e)
 }
 //counter is incremented if it's C, P or E
 
-static int	browse_map(t_mlx *so_long)
+static int	browse_map_b(t_mlx *so_long)
 {
 	static int	c;
 	static int	p;
@@ -62,7 +62,7 @@ static int	browse_map(t_mlx *so_long)
 	{
 		j = -1;
 		while (so_long->map[i][++j])
-			how_many_letter(so_long->map[i][j], &c, &p, &e);
+			how_many_letter_b(so_long->map[i][j], &c, &p, &e);
 	}
 	if ((c < 1) || (p > 1 || p == 0) || (e > 1 || e == 0))
 		return (-1);
@@ -73,7 +73,7 @@ static int	browse_map(t_mlx *so_long)
 // → E = exit, only 1 E
 // → P = player's starting position, only 1 P
 
-static int	check_letter(t_mlx *so_long)
+static int	check_letter_b(t_mlx *so_long)
 {
 	int	i;
 	int	j;
@@ -88,7 +88,7 @@ static int	check_letter(t_mlx *so_long)
 				return (-1);
 			if (so_long->map[i][j] != '1' && so_long->map[i][j] != '0'
 				&& so_long->map[i][j] != 'P' && so_long->map[i][j] != 'E'
-				&& so_long->map[i][j] != 'C')
+				&& so_long->map[i][j] != 'C' && so_long->map[i][j] != 'M')
 				return (-1);
 			if (!so_long->map[i + 1])
 				if (so_long->map[i][j] != '1')
@@ -101,26 +101,26 @@ static int	check_letter(t_mlx *so_long)
 	so_long->column = j;
 	return (1);
 }
-//only 0, 1, C, E and P are allowed
+//only 0, 1, C, E, P and M are allowed
 //map has to be surrounded by 1
 //row and column are updated with i and j value
 
-void	map_parsing(t_mlx *so_long)
+void	map_parsing_b(t_mlx *so_long)
 {
-	if (check_letter(so_long) == -1)
+	if (check_letter_b(so_long) == -1)
 	{	
-		free_tab_str(so_long->map);
-		message_error("Error\nCheck the content of your map\n", so_long);
+		free_tab_str_b(so_long->map);
+		message_error_b("Error\nCheck the content of your map\n", so_long);
 	}
-	if (browse_map(so_long) == -1)
+	if (browse_map_b(so_long) == -1)
 	{	
-		free_tab_str(so_long->map);
-		message_error("Error\nHow much C, E or P?\n", so_long);
+		free_tab_str_b(so_long->map);
+		message_error_b("Error\nHow much C, E or P?\n", so_long);
 	}
-	if (same_columns(so_long) == -1)
+	if (same_columns_b(so_long) == -1)
 	{	
-		free_tab_str(so_long->map);
-		message_error("Error\nCheck the content of your map\n", so_long);
+		free_tab_str_b(so_long->map);
+		message_error_b("Error\nCheck the content of your map\n", so_long);
 	}
 }
 //check if map is valid or not

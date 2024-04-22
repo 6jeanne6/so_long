@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:10:43 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/19 19:10:47 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/22 13:23:14 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@
 // }
 //set each collectible position
 
-static void	set_cpe_on_map(t_mlx *so_long, t_chara *p, t_exit *e)
+static void	set_cpe_on_map_b(t_mlx *so_long, t_chara *p, t_exit *e)
 {
 	int		i;
 	int		j;
@@ -101,11 +101,11 @@ static void	set_cpe_on_map(t_mlx *so_long, t_chara *p, t_exit *e)
 //define where is P and E
 //define how many C there are
 
-static void	all_null(t_mlx *so_long, t_chara *p, t_collec *c, t_exit *e)
+static void	all_null_b(t_mlx *so_long, t_chara *p, t_collec *c, t_exit *e)
 {
 	if (!p || !c || !e)
 	{
-		free_tab_str(so_long->map);
+		free_tab_str_b(so_long->map);
 		exit(EXIT_FAILURE);
 	}
 	p->pos.x = 0;
@@ -120,11 +120,11 @@ static void	all_null(t_mlx *so_long, t_chara *p, t_collec *c, t_exit *e)
 }
 //set all variables to NULL
 
-void	map_set_things(t_mlx *so_long)
+void	map_set_things_b(t_mlx *so_long)
 {
 	//so_long->map_tmp = so_long->map;
-	all_null(so_long, so_long->p, so_long->c, so_long->e);
-	set_cpe_on_map(so_long, so_long->p, so_long->e);
+	all_null_b(so_long, so_long->p, so_long->c, so_long->e);
+	set_cpe_on_map_b(so_long, so_long->p, so_long->e);
 	// fill(so_long->map_tmp, so_long->row, so_long->column, player.pos);
 	// int i = -1;
 	// while (++i < so_long->row)

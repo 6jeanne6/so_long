@@ -56,11 +56,12 @@ BONUS_SRC 	=	${BONUSDIR}/main_bonus.c \
 				${BONUSDIR}/manage_map/map_parsing_bonus.c \
 				${BONUSDIR}/manage_map/map_error_bonus.c \
 				${BONUSDIR}/manage_map/map_path_bonus.c \
-				${BONUSDIR}/mandatory/sprites/images_init_bonus.c \
-				${BONUSDIR}/mandatory/sprites/close_and_free_bonus.c \
-				${BONUSDIR}/mandatory/action/move_bonus.c \
-				${BONUSDIR}/mandatory/action/exit_handle_bonus.c \
-
+				${BONUSDIR}/sprites/images_init_bonus.c \
+				${BONUSDIR}/sprites/enemy_sprites.c \
+				${BONUSDIR}/sprites/close_and_free_bonus.c \
+				${BONUSDIR}/action/move_bonus.c \
+				${BONUSDIR}/action/exit_handle_bonus.c \
+				#${BONUSDIR}/sound/music_init.c \
 
 SRCS_BONUS 	= 	${BONUS_SRC}
 
@@ -72,7 +73,7 @@ OBJDIR 		= objs
 
 OBJ    		= ${SRC:${SRCDIR}/%.c=${OBJDIR}/%.o}
 
-OBJS 		= ${SRC:${BONUSDIR}/%.c=${OBJDIR}/%.o}
+OBJS 		= ${BONUS_SRC:${BONUSDIR}/%.c=${OBJDIR}/%.o}
 
 OBJS_BONUS 	= ${OBJS}
 

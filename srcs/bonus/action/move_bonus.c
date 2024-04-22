@@ -6,13 +6,13 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:11:05 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/19 19:11:10 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/22 16:30:38 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	move_right(t_mlx *so_long, t_chara *p)
+void	move_right_b(t_mlx *so_long, t_chara *p)
 {
 	if (so_long->map[p->pos.x][p->pos.y + 1] != '1')
 	{
@@ -23,21 +23,21 @@ void	move_right(t_mlx *so_long, t_chara *p)
 		{
 			so_long->collectibles--;
 			if (so_long->collectibles == 0)
-				open_exit(so_long);
+				open_exit_b(so_long);
 		}
 		if (so_long->map[p->pos.x][p->pos.y + 1] == 'E'
 			&& so_long->e->all_c == 1)
-			got_exited(so_long, so_long->map[p->pos.x][p->pos.y + 1]);
+			got_exited_b(so_long, so_long->map[p->pos.x][p->pos.y + 1]);
 		so_long->map[p->pos.x][p->pos.y] = '0';
 		p->pos.y = p->pos.y + 1;
 		so_long->map[p->pos.x][p->pos.y] = 'P';
 		ft_printf("Your number of steps: %d\n", p->step++);
-		put_images(so_long);
+		put_images_b(so_long);
 	}
 }
 //player goes right
 
-void	move_left(t_mlx *so_long, t_chara *p)
+void	move_left_b(t_mlx *so_long, t_chara *p)
 {
 	if (so_long->map[p->pos.x][p->pos.y - 1] != '1')
 	{
@@ -48,21 +48,21 @@ void	move_left(t_mlx *so_long, t_chara *p)
 		{
 			so_long->collectibles--;
 			if (so_long->collectibles == 0)
-				open_exit(so_long);
+				open_exit_b(so_long);
 		}
 		if (so_long->map[p->pos.x][p->pos.y - 1] == 'E'
 			&& so_long->e->all_c == 1)
-			got_exited(so_long, so_long->map[p->pos.x][p->pos.y - 1]);
+			got_exited_b(so_long, so_long->map[p->pos.x][p->pos.y - 1]);
 		so_long->map[p->pos.x][p->pos.y] = '0';
 		p->pos.y = p->pos.y - 1;
 		so_long->map[p->pos.x][p->pos.y] = 'P';
 		ft_printf("Your number of steps: %d\n", p->step++);
-		put_images(so_long);
+		put_images_b(so_long);
 	}
 }
 //player goes left
 
-void	move_down(t_mlx *so_long, t_chara *p)
+void	move_down_b(t_mlx *so_long, t_chara *p)
 {
 	if (so_long->map[p->pos.x + 1][p->pos.y] != '1')
 	{
@@ -73,21 +73,21 @@ void	move_down(t_mlx *so_long, t_chara *p)
 		{
 			so_long->collectibles--;
 			if (so_long->collectibles == 0)
-				open_exit(so_long);
+				open_exit_b(so_long);
 		}
 		if (so_long->map[p->pos.x + 1][p->pos.y] == 'E'
 			&& so_long->e->all_c == 1)
-			got_exited(so_long, so_long->map[p->pos.x + 1][p->pos.y]);
+			got_exited_b(so_long, so_long->map[p->pos.x + 1][p->pos.y]);
 		so_long->map[p->pos.x][p->pos.y] = '0';
 		p->pos.x = p->pos.x + 1;
 		so_long->map[p->pos.x][p->pos.y] = 'P';
 		ft_printf("Your number of steps: %d\n", p->step++);
-		put_images(so_long);
+		put_images_b(so_long);
 	}
 }
 //player goes down
 
-void	move_up(t_mlx *so_long, t_chara *p)
+void	move_up_b(t_mlx *so_long, t_chara *p)
 {
 	if (so_long->map[p->pos.x - 1][p->pos.y] != '1')
 	{
@@ -98,43 +98,43 @@ void	move_up(t_mlx *so_long, t_chara *p)
 		{
 			so_long->collectibles--;
 			if (so_long->collectibles == 0)
-				open_exit(so_long);
+				open_exit_b(so_long);
 		}
 		if (so_long->map[p->pos.x - 1][p->pos.y] == 'E'
 			&& so_long->e->all_c == 1)
-			got_exited(so_long, so_long->map[p->pos.x - 1][p->pos.y]);
+			got_exited_b(so_long, so_long->map[p->pos.x - 1][p->pos.y]);
 		so_long->map[p->pos.x][p->pos.y] = '0';
 		p->pos.x = p->pos.x - 1;
 		so_long->map[p->pos.x][p->pos.y] = 'P';
 		ft_printf("Your number of steps: %d\n", p->step++);
-		put_images(so_long);
+		put_images_b(so_long);
 	}
 }
 //player goes up
 
-int	handle_keypress(int key, t_mlx *so_long)
+int	handle_keypress_b(int key, t_mlx *so_long)
 {
 	if (key == XK_Escape)
-		close_everything(so_long);
+		close_everything_b(so_long);
 	if (key == XK_a || key == XK_Left)
 	{
 		so_long->p->direction = XK_a;
-		move_left(so_long, so_long->p);
+		move_left_b(so_long, so_long->p);
 	}
 	if (key == XK_d || key == XK_Right)
 	{
 		so_long->p->direction = XK_d;
-		move_right(so_long, so_long->p);
+		move_right_b(so_long, so_long->p);
 	}
 	if (key == XK_w || key == XK_Up)
 	{
 		so_long->p->direction = XK_w;
-		move_up(so_long, so_long->p);
+		move_up_b(so_long, so_long->p);
 	}
 	if (key == XK_s || key == XK_Down)
 	{
 		so_long->p->direction = XK_s;
-		move_down(so_long, so_long->p);
+		move_down_b(so_long, so_long->p);
 	}
 	return (0);
 }

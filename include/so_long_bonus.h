@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:55:46 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/19 18:55:57 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/22 18:22:21 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include "mlx.h"
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
+# include <SDL2/SDL.h>
+//# include <SDL2/SDL_mixer.h>
 
 // **********************************
 // *     We need colors to debug    *
@@ -80,12 +82,26 @@
 // *       Structures are cool      *
 // **********************************
 
+// typedef struct s_music
+// {
+// 	void	*music_ptr;
+// 	void	*sfx_ptr;
+// }				t_music;
+
 typedef struct s_position
 {
 	int		x;
 	int		y;
 
 }				t_pos;
+
+typedef struct s_mob
+{
+	t_pos	pos;
+
+	int		mobs;
+
+}				t_mob;
 
 typedef struct s_image
 {
@@ -114,9 +130,6 @@ typedef struct s_exit
 {
 	t_pos		pos;
 
-	t_image		*exit_open;
-	t_image		*exit_close;
-
 	int			all_c;
 
 }				t_exit;
@@ -124,7 +137,6 @@ typedef struct s_exit
 typedef struct s_collectible
 {
 	t_pos		pos;
-	t_image		*jiggy;
 
 	int			**position;
 
@@ -132,10 +144,11 @@ typedef struct s_collectible
 
 typedef struct s_mlx
 {
-	t_image		*img[16];
+	t_image		*img[13];
 	t_collec	*c;
 	t_chara		*p;
 	t_exit		*e;
+	t_mob		*m;
 
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -143,6 +156,7 @@ typedef struct s_mlx
 	char		**map;
 	char		**map_tmp;
 
+	int			leak;
 	int			row;
 	int			column;
 	int			collectibles;
@@ -155,40 +169,42 @@ typedef struct s_mlx
 // *         Parsing functions      *
 // **********************************
 
-void	map_init(int argc, char **argv, t_mlx *so_long);
-void	map_parsing(t_mlx *so_long);
-void	map_set_things(t_mlx *so_long);
+void	map_init_b(int argc, char **argv, t_mlx *so_long);
+void	map_parsing_b(t_mlx *so_long);
+void	where_is_enemy(t_mlx *so_long);
+void	map_set_things_b(t_mlx *so_long);
 
 // **********************************
 // *         Error functions        *
 // **********************************
 
-void	message_error(char *message, t_mlx *so_long);
-void	free_tab_str(char **tab);
+void	message_error_b(char *message, t_mlx *so_long);
+void	free_tab_str_b(char **tab);
 
 // **********************************
 // *         Game and images        *
 // **********************************
 
-void	load_images(t_mlx *so_long);
-void	put_images(t_mlx *so_long);
-void	put_images_exit(t_mlx *so_long, char c);
-void	got_exited(t_mlx *so_long, char c);
+void	load_images_b(t_mlx *so_long);
+void	put_images_b(t_mlx *so_long);
+void	put_images_exit_b(t_mlx *so_long, char c);
+void	got_exited_b(t_mlx *so_long, char c);
+void 	enemy_sprite(t_mlx *so_long);
 
-void	open_exit(t_mlx *so_long);
+void	open_exit_b(t_mlx *so_long);
 
-int		close_everything(t_mlx *so_long);
-void	destroy_so_long(t_mlx *so_long);
+int		close_everything_b(t_mlx *so_long);
+void	destroy_so_long_b(t_mlx *so_long);
 
 // **********************************
 // *           Movements            *
 // **********************************
 
-int		handle_keypress(int key, t_mlx *so_long);
+int		handle_keypress_b(int key, t_mlx *so_long);
 
-void	move_up(t_mlx *so_long, t_chara *p);
-void	move_down(t_mlx *so_long, t_chara *p);
-void	move_left(t_mlx *so_long, t_chara *p);
-void	move_right(t_mlx *so_long, t_chara *p);
+void	move_up_b(t_mlx *so_long, t_chara *p);
+void	move_down_b(t_mlx *so_long, t_chara *p);
+void	move_left_b(t_mlx *so_long, t_chara *p);
+void	move_right_b(t_mlx *so_long, t_chara *p);
 
 #endif 

@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:06:26 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/19 19:05:01 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/22 16:21:14 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	display(t_mlx *so_long)
 {
-	put_images(so_long);
+	put_images_b(so_long);
 	return (0);
 }
 
@@ -26,9 +26,9 @@ int	main(int argc, char **argv)
 
 	x = TILE_SIZE;
 	y = TILE_SIZE;
-	map_init(argc, argv, &so_long);
-	map_parsing(&so_long);
-	map_set_things(&so_long);
+	map_init_b(argc, argv, &so_long);
+	map_parsing_b(&so_long);
+	map_set_things_b(&so_long);
 	so_long.mlx_ptr = mlx_init();
 	if (!so_long.mlx_ptr)
 		exit(EXIT_FAILURE);
@@ -37,9 +37,9 @@ int	main(int argc, char **argv)
 	so_long.win_ptr = mlx_new_window(so_long.mlx_ptr, y, x, "Super Renko");
 	if (!so_long.win_ptr)
 		return (free(so_long.mlx_ptr), 0);
-	load_images(&so_long);
-	mlx_key_hook(so_long.win_ptr, &handle_keypress, &so_long);
-	mlx_hook(so_long.win_ptr, DestroyNotify, StructureNotifyMask, &close_everything,
+	load_images_b(&so_long);
+	mlx_key_hook(so_long.win_ptr, &handle_keypress_b, &so_long);
+	mlx_hook(so_long.win_ptr, DestroyNotify, StructureNotifyMask, &close_everything_b,
         &so_long);
 	mlx_loop_hook(so_long.mlx_ptr, &display, &so_long);
 	mlx_loop(so_long.mlx_ptr);

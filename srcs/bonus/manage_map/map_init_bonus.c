@@ -6,13 +6,13 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:09:45 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/19 19:09:48 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/22 17:34:40 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-static	int	space_or_tab(char *map)
+static	int	space_or_tab_b(char *map)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ static	int	space_or_tab(char *map)
 }
 //check if character is space or tab
 
-static char	**lets_split(char *map)
+static char	**lets_split_b(char *map)
 {
 	char	**map_split;
 
@@ -38,7 +38,7 @@ static char	**lets_split(char *map)
 }
 //split map by \n to have each line
 
-static char	**gnl_and_join(int fd)
+static char	**gnl_and_join_b(t_mlx *so_long, int fd)
 {
 	char	*map;
 	char	*big_map;
@@ -52,15 +52,15 @@ static char	**gnl_and_join(int fd)
 		return (free(map), NULL);
 	while (map)
 	{
-		if (space_or_tab(map) == -1)
-			return (free(big_map), free(map), NULL);
+		if (space_or_tab_b(map) == -1)
+			so_long->leak = 1;
 		big_map = ft_strjoin_gnl(big_map, map);
 		if (!big_map || big_map[0] == '\0')
 			return (free(map), NULL);
 		free(map);
 		map = get_next_line(fd);
 	}
-	splitted_map = lets_split(big_map);
+	splitted_map = lets_split_b(big_map);
 	if (!splitted_map)
 		return (free(big_map), NULL);
 	free(big_map);
@@ -70,7 +70,7 @@ static char	**gnl_and_join(int fd)
 // → gnl and strjoin each line to read and have all the content
 // → then split it by \n
 
-static void	so_long_null(t_mlx *so_long)
+static void	so_long_null_b(t_mlx *so_long)
 {
 	if (!so_long)
 		return ;
@@ -78,6 +78,7 @@ static void	so_long_null(t_mlx *so_long)
 	so_long->win_ptr = NULL;
 	so_long->map = NULL;
 	so_long->map_tmp = NULL;
+	so_long->leak = 0;
 	so_long->row = 0;
 	so_long->column = 0;
 	so_long->collectibles = 0;
@@ -92,27 +93,31 @@ static void	so_long_null(t_mlx *so_long)
 	so_long->e = ft_calloc(1, sizeof(t_exit));
 	if (!so_long->e)
 		so_long->e = NULL;
+	so_long->m = ft_calloc(1, sizeof(t_mob));
+	if (!so_long->m)
+		so_long->m = NULL;
 }
 //all variables of structure are set to NULL
 
-void	map_init(int argc, char **argv, t_mlx *so_long)
+void	map_init_b(int argc, char **argv, t_mlx *so_long)
 {
 	int	fd;
 
 	fd = 0;
-	so_long_null(so_long);
+	so_long_null_b(so_long);
 	if (argc != 2)
-		message_error("Error\nHey listen! Only 2 arguments\n", so_long);
+		message_error_b("Error\nHey listen! Only 2 arguments\n", so_long);
 	if (!(ft_strstr(argv[1], ".ber")))
-		message_error("Error\nPlease use a .ber map\n", so_long);
+		message_error_b("Error\nPlease use a .ber map\n", so_long);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		message_error("Error\nYour file cannot be opened...\n", so_long);
-	so_long->map = gnl_and_join(fd);
-	if (so_long->map == NULL)
+		message_error_b("Error\nYour file cannot be opened...\n", so_long);
+	so_long->map = gnl_and_join_b(so_long, fd);
+	if (so_long->map == NULL || so_long->leak == 1)
 	{
+		free_tab_str_b(so_long->map);
 		close(fd);
-		message_error("Error\nHmm your map is kind of weird\n", so_long);
+		message_error_b("Error\nHmm your map is kind of weird\n", so_long);
 	}
 	close(fd);
 }

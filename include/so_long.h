@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:53:50 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/19 18:54:25 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/22 15:10:43 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ typedef struct s_mlx
 	char		**map;
 	char		**map_tmp;
 
+	int			leak;
 	int			row;
 	int			column;
 	int			collectibles;

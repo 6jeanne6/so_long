@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:55:15 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/19 18:43:39 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/22 15:23:00 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	**lets_split(char *map)
 }
 //split map by \n to have each line
 
-static char	**gnl_and_join(int fd)
+static char	**gnl_and_join(t_mlx *so_long, int fd)
 {
 	char	*map;
 	char	*big_map;
@@ -53,10 +53,7 @@ static char	**gnl_and_join(int fd)
 	while (map)
 	{
 		if (space_or_tab(map) == -1)
-		{
-			get_next_line(-42);
-			return (free(big_map), free(map), NULL);
-		}
+			so_long->leak = 1;
 		big_map = ft_strjoin_gnl(big_map, map);
 		if (!big_map || big_map[0] == '\0')
 			return (free(map), NULL);
@@ -81,6 +78,7 @@ static void	so_long_null(t_mlx *so_long)
 	so_long->win_ptr = NULL;
 	so_long->map = NULL;
 	so_long->map_tmp = NULL;
+	so_long->leak = 0;
 	so_long->row = 0;
 	so_long->column = 0;
 	so_long->collectibles = 0;
@@ -111,9 +109,10 @@ void	map_init(int argc, char **argv, t_mlx *so_long)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		message_error("Error\nYour file cannot be opened...\n", so_long);
-	so_long->map = gnl_and_join(fd);
-	if (so_long->map == NULL)
+	so_long->map = gnl_and_join(so_long, fd);
+	if (so_long->map == NULL || so_long->leak == 1)
 	{
+		free_tab_str(so_long->map);
 		close(fd);
 		message_error("Error\nHmm your map is kind of weird\n", so_long);
 	}
