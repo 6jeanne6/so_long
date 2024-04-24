@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:21:28 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/22 18:13:00 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/23 19:00:12 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	check_images(t_mlx *so_long)
 
 void	enemy_sprite(t_mlx *so_long)
 {
-	int loaded;
+	int	loaded;
 
 	loaded = 0;
 	so_long->img[9]->mlx_img = mlx_xpm_file_to_image(so_long->mlx_ptr,
@@ -67,5 +67,6 @@ void	enemy_sprite(t_mlx *so_long)
 		exit(EXIT_FAILURE);
 	}
 	put_images_enemy(so_long);
+	display_steps(so_long);
 }
 //load xpm images of enemy

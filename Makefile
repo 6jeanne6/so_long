@@ -44,8 +44,10 @@ SRC			=	${SRCDIR}/mandatory/main.c \
 				${SRCDIR}/mandatory/manage_map/map_parsing.c \
 				${SRCDIR}/mandatory/manage_map/map_error.c \
 				${SRCDIR}/mandatory/manage_map/map_path.c \
+				${SRCDIR}/mandatory/manage_map/valid_path.c \
 				${SRCDIR}/mandatory/sprites/images_init.c \
 				${SRCDIR}/mandatory/sprites/close_and_free.c \
+				${SRCDIR}/mandatory/sprites/check_image.c \
 				${SRCDIR}/mandatory/action/move.c \
 				${SRCDIR}/mandatory/action/exit_handle.c \
 
@@ -59,6 +61,7 @@ BONUS_SRC 	=	${BONUSDIR}/main_bonus.c \
 				${BONUSDIR}/sprites/images_init_bonus.c \
 				${BONUSDIR}/sprites/enemy_sprites.c \
 				${BONUSDIR}/sprites/close_and_free_bonus.c \
+				${BONUSDIR}/sprites/step_meter.c \
 				${BONUSDIR}/action/move_bonus.c \
 				${BONUSDIR}/action/exit_handle_bonus.c \
 				#${BONUSDIR}/sound/music_init.c \
@@ -99,7 +102,7 @@ ${NAME} : ${OBJ}
 	@${CC} ${CFLAG} ${INCLUDES} ${OBJ} ${LFLAG} ${MLXFLAG} -o ${NAME}
 	@echo "${YELLOW}✰✰✰ Alright, you can use ${NAME} ✰✰✰ :D"
 
-${OBJDIR}/%.o: ${SRCDIR}/%.c
+${OBJDIR}/%.o: ${SRCDIR}/%.c ${INC}
 	@mkdir -p ${dir $@}
 	@${CC} ${CFLAG} ${INCLUDES} -c $< -o $@
 	@echo "${GREEN}***  SO_LONG: compilation success  ***"
@@ -110,7 +113,7 @@ ${NAME_BONUS} : ${OBJS_BONUS}
 	@${CC} ${CFLAG} ${INCLUDES_BONUS} ${OBJS_BONUS} ${LFLAG} ${MLXFLAG} -o ${NAME_BONUS}
 	@echo "${YELLOW}✰✰✰ Bonus has been compiled ✰✰✰ :D"
 
-${OBJDIR}/%.o: ${BONUSDIR}/%.c
+${OBJDIR}/%.o: ${BONUSDIR}/%.c ${INCBONUS}
 	@mkdir -p ${dir $@}
 	@${CC} ${CFLAG} ${INCLUDES_BONUS} -c $< -o $@
 	@echo "${GREEN}***  Bonus compilation success  ***"

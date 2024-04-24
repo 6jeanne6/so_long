@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:53:50 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/22 15:10:43 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/24 19:53:40 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,24 @@
 // *          Game assets           *
 // **********************************
 
-# define WALL	"images/xpm/Brique.xpm"
-# define WALL2	"images/xpm/Brique2.xpm"
+# define WALL			"images/xpm/Brique.xpm"
+# define WALL2			"images/xpm/Brique2.xpm"
 
-# define JIGGY	"images/xpm/Collectible-jiggy.xpm"
+# define JIGGY			"images/xpm/Collectible-jiggy.xpm"
 
 # define EXIT_CLOSED	"images/xpm/Exit_closed.xpm"
 # define EXIT_OPENED	"images/xpm/Exit_open.xpm"
 
-# define RENKO_DOWN	"images/xpm/Renko_down.xpm"
-# define RENKO_LEFT	"images/xpm/Renko_left.xpm"
+# define RENKO_DOWN		"images/xpm/Renko_down.xpm"
+# define RENKO_LEFT		"images/xpm/Renko_left.xpm"
 # define RENKO_RIGHT	"images/xpm/Renko_right.xpm"
-# define RENKO_UP	"images/xpm/Renko_up.xpm"
+# define RENKO_UP		"images/xpm/Renko_up.xpm"
 
-# define BUSH	"images/xpm/Vegetation_32.xpm"
-# define BUSH2	"images/xpm/Vegetation_35.xpm"
-# define BUSH3	"images/xpm/Vegetation_46.xpm"
-# define BUSH4	"images/xpm/Vegetation_51.xpm"
-# define BUSH5	"images/xpm/Vegetation_55.xpm"
+# define BUSH			"images/xpm/Vegetation_32.xpm"
+# define BUSH2			"images/xpm/Vegetation_35.xpm"
+# define BUSH3			"images/xpm/Vegetation_46.xpm"
+# define BUSH4			"images/xpm/Vegetation_51.xpm"
+# define BUSH5			"images/xpm/Vegetation_55.xpm"
 
 // **********************************
 // *       Structures are cool      *
@@ -136,8 +136,10 @@ typedef struct s_mlx
 	int			row;
 	int			column;
 	int			collectibles;
+	int			collec_tmp;
 	int			current_i;
 	int			current_j;
+	int 		zeros;
 
 }				t_mlx;
 
@@ -148,6 +150,8 @@ typedef struct s_mlx
 void	map_init(int argc, char **argv, t_mlx *so_long);
 void	map_parsing(t_mlx *so_long);
 void	map_set_things(t_mlx *so_long);
+
+int		search_path(t_mlx *so_long);
 
 // **********************************
 // *         Error functions        *
@@ -167,7 +171,10 @@ void	got_exited(t_mlx *so_long, char c);
 
 void	open_exit(t_mlx *so_long);
 
+int		destroy_and_tab(t_mlx *so_long);
 int		close_everything(t_mlx *so_long);
+int		check_xpm_images(t_mlx *so_long);
+
 void	destroy_so_long(t_mlx *so_long);
 
 // **********************************

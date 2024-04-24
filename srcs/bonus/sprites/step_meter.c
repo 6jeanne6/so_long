@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_and_free_bonus.c                             :+:      :+:    :+:   */
+/*   step_meter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 17:41:41 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/23 18:54:59 by jewu             ###   ########.fr       */
+/*   Created: 2024/04/23 17:44:48 by jewu              #+#    #+#             */
+/*   Updated: 2024/04/24 14:13:39 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int	close_everything_b(t_mlx *so_long)
+void	display_steps(t_mlx *so_long)
 {
-	int	i;
+	char	*message;
 
-	i = -1;
-	while (++i < 13)
-	{
-		if (so_long->img[i]->mlx_img)
-			mlx_destroy_image(so_long->mlx_ptr, so_long->img[i]->mlx_img);
-		free(so_long->img[i]);
-	}
-	free_tab_str_b(so_long->map);
-	mlx_destroy_window(so_long->mlx_ptr, so_long->win_ptr);
-	mlx_destroy_display(so_long->mlx_ptr);
-	free(so_long->mlx_ptr);
-	destroy_so_long_b(so_long);
-	exit(0);
+	message = ft_itoa(so_long->p->step);
+	if (!message)
+		return ;
+	mlx_string_put(so_long->mlx_ptr, so_long->win_ptr,
+		so_long->column, so_long->row * 42, 0xFFFFFF, message);
+	mlx_set_font(so_long->mlx_ptr, so_long->win_ptr, "fixed");
+	free(message);
 }
-//if ESC, close window and free
+//display steps in game

@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:11:05 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/22 16:30:38 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/23 19:06:40 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ void	move_right_b(t_mlx *so_long, t_chara *p)
 			if (so_long->collectibles == 0)
 				open_exit_b(so_long);
 		}
-		if (so_long->map[p->pos.x][p->pos.y + 1] == 'E'
-			&& so_long->e->all_c == 1)
+		if ((so_long->map[p->pos.x][p->pos.y + 1] == 'E'
+			&& so_long->e->all_c == 1) ||
+			(so_long->map[p->pos.x][p->pos.y + 1] == 'M'))
 			got_exited_b(so_long, so_long->map[p->pos.x][p->pos.y + 1]);
 		so_long->map[p->pos.x][p->pos.y] = '0';
 		p->pos.y = p->pos.y + 1;
 		so_long->map[p->pos.x][p->pos.y] = 'P';
-		ft_printf("Your number of steps: %d\n", p->step++);
+		ft_printf("Your number of steps: %d\n", ++(p->step));
 		put_images_b(so_long);
 	}
 }
@@ -50,13 +51,14 @@ void	move_left_b(t_mlx *so_long, t_chara *p)
 			if (so_long->collectibles == 0)
 				open_exit_b(so_long);
 		}
-		if (so_long->map[p->pos.x][p->pos.y - 1] == 'E'
-			&& so_long->e->all_c == 1)
+		if ((so_long->map[p->pos.x][p->pos.y - 1] == 'E'
+			&& so_long->e->all_c == 1) ||
+			(so_long->map[p->pos.x][p->pos.y - 1] == 'M'))
 			got_exited_b(so_long, so_long->map[p->pos.x][p->pos.y - 1]);
 		so_long->map[p->pos.x][p->pos.y] = '0';
 		p->pos.y = p->pos.y - 1;
 		so_long->map[p->pos.x][p->pos.y] = 'P';
-		ft_printf("Your number of steps: %d\n", p->step++);
+		ft_printf("Your number of steps: %d\n", ++(p->step));
 		put_images_b(so_long);
 	}
 }
@@ -75,13 +77,14 @@ void	move_down_b(t_mlx *so_long, t_chara *p)
 			if (so_long->collectibles == 0)
 				open_exit_b(so_long);
 		}
-		if (so_long->map[p->pos.x + 1][p->pos.y] == 'E'
-			&& so_long->e->all_c == 1)
+		if ((so_long->map[p->pos.x + 1][p->pos.y] == 'E'
+			&& so_long->e->all_c == 1) ||
+			so_long->map[p->pos.x + 1][p->pos.y] == 'M')
 			got_exited_b(so_long, so_long->map[p->pos.x + 1][p->pos.y]);
 		so_long->map[p->pos.x][p->pos.y] = '0';
 		p->pos.x = p->pos.x + 1;
 		so_long->map[p->pos.x][p->pos.y] = 'P';
-		ft_printf("Your number of steps: %d\n", p->step++);
+		ft_printf("Your number of steps: %d\n", ++(p->step));
 		put_images_b(so_long);
 	}
 }
@@ -100,13 +103,14 @@ void	move_up_b(t_mlx *so_long, t_chara *p)
 			if (so_long->collectibles == 0)
 				open_exit_b(so_long);
 		}
-		if (so_long->map[p->pos.x - 1][p->pos.y] == 'E'
-			&& so_long->e->all_c == 1)
+		if ((so_long->map[p->pos.x - 1][p->pos.y] == 'E'
+			&& so_long->e->all_c == 1) ||
+			(so_long->map[p->pos.x - 1][p->pos.y]))
 			got_exited_b(so_long, so_long->map[p->pos.x - 1][p->pos.y]);
 		so_long->map[p->pos.x][p->pos.y] = '0';
 		p->pos.x = p->pos.x - 1;
 		so_long->map[p->pos.x][p->pos.y] = 'P';
-		ft_printf("Your number of steps: %d\n", p->step++);
+		ft_printf("Your number of steps: %d\n", ++(p->step));
 		put_images_b(so_long);
 	}
 }

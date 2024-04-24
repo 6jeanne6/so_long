@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:55:46 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/22 18:22:21 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/24 14:20:28 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "mlx.h"
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
+# include <time.h> //clock
 # include <SDL2/SDL.h>
 //# include <SDL2/SDL_mixer.h>
 
@@ -187,9 +188,10 @@ void	free_tab_str_b(char **tab);
 
 void	load_images_b(t_mlx *so_long);
 void	put_images_b(t_mlx *so_long);
-void	put_images_exit_b(t_mlx *so_long, char c);
+void	put_images_wall_exit_b(t_mlx *so_long, char c);
 void	got_exited_b(t_mlx *so_long, char c);
 void 	enemy_sprite(t_mlx *so_long);
+void	display_steps(t_mlx *so_long);
 
 void	open_exit_b(t_mlx *so_long);
 

@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:25:24 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/22 15:19:14 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/24 18:28:39 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,18 @@ void	destroy_so_long(t_mlx *so_long)
 {
 	if (!so_long)
 		return ;
-	free(so_long->c);
-	free(so_long->p);
-	free(so_long->e);
+	if (so_long->c)
+		free(so_long->c);
+	if (so_long->p)
+		free(so_long->p);
+	if (so_long->e)
+		free(so_long->e);
+	if (so_long->mlx_ptr && so_long->win_ptr)
+	{
+		mlx_destroy_window(so_long->mlx_ptr, so_long->win_ptr);
+		mlx_destroy_display(so_long->mlx_ptr);
+		free(so_long->mlx_ptr);
+	}
 }
 //free content of so_long
 

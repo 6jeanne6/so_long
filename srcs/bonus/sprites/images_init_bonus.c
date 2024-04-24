@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:51:16 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/22 17:52:03 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/23 18:38:41 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,13 @@ static void	put_images_player_b(t_mlx *so_long, char c)
 //display player according to direction 
 //(see handle keypress) and collectible
 
-void	put_images_exit_b(t_mlx *so_long, char c)
+void	put_images_wall_exit_b(t_mlx *so_long, char c)
 {
-	if (c == 'E' && so_long->e->all_c == 0)
+	if (c == '1')
+		mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
+			so_long->img[1]->mlx_img, so_long->current_j * 42,
+			so_long->current_i * 42);
+	else if (c == 'E' && so_long->e->all_c == 0)
 		mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
 			so_long->img[3]->mlx_img, so_long->current_j * 42,
 			so_long->current_i * 42);
@@ -66,21 +70,18 @@ void	put_images_b(t_mlx *so_long)
 		j = -1;
 		while (++j < so_long->column)
 		{
-		so_long->current_j = j;
+			so_long->current_j = j;
 			if (so_long->map[i][j] == '0')
 				mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
 					so_long->img[0]->mlx_img, so_long->current_j * 42,
 					so_long->current_i * 42);
-			else if (so_long->map[i][j] == '1')
-				mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
-					so_long->img[1]->mlx_img, so_long->current_j * 42,
-					so_long->current_i * 42);
-			else if (so_long->map[i][j] == 'E')
-				put_images_exit_b(so_long, so_long->map[i][j]);
+			else if (so_long->map[i][j] == '1' || so_long->map[i][j] == 'E')
+				put_images_wall_exit_b(so_long, so_long->map[i][j]);
 			else if (so_long->map[i][j] == 'C' || so_long->map[i][j] == 'P')
 				put_images_player_b(so_long, so_long->map[i][j]);
 		}
 	}
+	display_steps(so_long);
 }
 //display bush, jiggy, brick and closed exit
 

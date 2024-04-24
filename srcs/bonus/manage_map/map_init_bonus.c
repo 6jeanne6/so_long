@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:09:45 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/22 17:34:40 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/23 19:01:30 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,7 @@ static void	so_long_null_b(t_mlx *so_long)
 {
 	if (!so_long)
 		return ;
-	so_long->mlx_ptr = NULL;
-	so_long->win_ptr = NULL;
-	so_long->map = NULL;
-	so_long->map_tmp = NULL;
-	so_long->leak = 0;
-	so_long->row = 0;
-	so_long->column = 0;
-	so_long->collectibles = 0;
-	so_long->current_i = 0;
-	so_long->current_j = 0;
+	ft_bzero(so_long, sizeof(t_mlx));
 	so_long->p = ft_calloc(1, sizeof(t_chara));
 	if (!so_long->p)
 		so_long->p = NULL;

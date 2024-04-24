@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 15:21:20 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/19 15:53:06 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/23 17:06:15 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ void	put_images(t_mlx *so_long)
 
 static void	load_images_player(t_mlx *so_long)
 {
+	int	loaded;
+
+	loaded = 0;
 	so_long->img[5]->mlx_img = mlx_xpm_file_to_image(so_long->mlx_ptr,
 			RENKO_DOWN, &so_long->img[5]->width, &so_long->img[5]->height);
 	so_long->img[6]->mlx_img = mlx_xpm_file_to_image(so_long->mlx_ptr,
@@ -94,8 +97,17 @@ static void	load_images_player(t_mlx *so_long)
 			RENKO_LEFT, &so_long->img[7]->width, &so_long->img[7]->height);
 	so_long->img[8]->mlx_img = mlx_xpm_file_to_image(so_long->mlx_ptr,
 			RENKO_RIGHT, &so_long->img[8]->width, &so_long->img[8]->height);
+	loaded = check_xpm_images(so_long);
+	if (loaded == -1)
+	{
+		ft_putstr_fd("\033[0;31mError\nYour image is weird\n", 2);
+		ft_putstr_fd("\033[0m", 2);
+		close_everything(so_long);
+		exit(EXIT_FAILURE);
+	}
 }
 //load xpm images of player
+//check if img.ptr is not NULL
 
 void	load_images(t_mlx *so_long)
 {

@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:10:43 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/22 13:23:14 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/23 19:01:49 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static void	all_null_b(t_mlx *so_long, t_chara *p, t_collec *c, t_exit *e)
 	p->pos.x = 0;
 	p->pos.y = 0;
 	p->direction = 0;
-	p->step = 1;
+	p->step = 0;
 	c->pos.x = 0;
 	c->pos.y = 0;
 	e->pos.x = 0;
