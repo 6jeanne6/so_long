@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:55:46 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/24 14:20:28 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/25 17:59:00 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
 # include <time.h> //clock
-# include <SDL2/SDL.h>
-//# include <SDL2/SDL_mixer.h>
 
 // **********************************
 // *     We need colors to debug    *
@@ -49,12 +47,11 @@
 // *          Game assets           *
 // **********************************
 
-# define BOMB	"images/xpm/Bomb.xpm"
-
-# define WALL	"images/xpm/Brique.xpm"
 # define WALL2	"images/xpm/Brique2.xpm"
 
 # define JIGGY	"images/xpm/Collectible-jiggy.xpm"
+# define JIGGY2	"images/xpm/Collectible-jiggy2.xpm"
+# define JIGGY3 "images/xpm/Collectible-jiggy3.xpm"
 
 # define ENEMY_DOWN	"images/xpm/Enemy_down.xpm"
 # define ENEMY_UP	"images/xpm/Enemy_up.xpm"
@@ -64,30 +61,16 @@
 # define EXIT_CLOSED	"images/xpm/Exit_closed.xpm"
 # define EXIT_OPENED	"images/xpm/Exit_open.xpm"
 
-# define EXPLOSION	"images/xpm/Explosion.xpm"
-
-# define VOID	"images/xpm/Purple_Nebula_08.xpm"
-
 # define RENKO_DOWN	"images/xpm/Renko_down.xpm"
 # define RENKO_LEFT	"images/xpm/Renko_left.xpm"
 # define RENKO_RIGHT	"images/xpm/Renko_right.xpm"
 # define RENKO_UP	"images/xpm/Renko_up.xpm"
 
 # define BUSH	"images/xpm/Vegetation_32.xpm"
-# define BUSH2	"images/xpm/Vegetation_35.xpm"
-# define BUSH3	"images/xpm/Vegetation_46.xpm"
-# define BUSH4	"images/xpm/Vegetation_51.xpm"
-# define BUSH5	"images/xpm/Vegetation_55.xpm"
 
 // **********************************
 // *       Structures are cool      *
 // **********************************
-
-// typedef struct s_music
-// {
-// 	void	*music_ptr;
-// 	void	*sfx_ptr;
-// }				t_music;
 
 typedef struct s_position
 {
@@ -108,11 +91,6 @@ typedef struct s_image
 {
 	void	*mlx_img;
 
-	char	*addr;
-
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
 	int		width;
 	int		height;
 
@@ -145,7 +123,7 @@ typedef struct s_collectible
 
 typedef struct s_mlx
 {
-	t_image		*img[13];
+	t_image		*img[16];
 	t_collec	*c;
 	t_chara		*p;
 	t_exit		*e;
@@ -161,6 +139,7 @@ typedef struct s_mlx
 	int			row;
 	int			column;
 	int			collectibles;
+	int			collec_tmp;
 	int			current_i;
 	int			current_j;
 
@@ -174,6 +153,8 @@ void	map_init_b(int argc, char **argv, t_mlx *so_long);
 void	map_parsing_b(t_mlx *so_long);
 void	where_is_enemy(t_mlx *so_long);
 void	map_set_things_b(t_mlx *so_long);
+
+int		search_path_b(t_mlx *so_long);
 
 // **********************************
 // *         Error functions        *
@@ -190,11 +171,13 @@ void	load_images_b(t_mlx *so_long);
 void	put_images_b(t_mlx *so_long);
 void	put_images_wall_exit_b(t_mlx *so_long, char c);
 void	got_exited_b(t_mlx *so_long, char c);
-void 	enemy_sprite(t_mlx *so_long);
+
+void 	enemy_jiggy_sprite(t_mlx *so_long);
 void	display_steps(t_mlx *so_long);
 
 void	open_exit_b(t_mlx *so_long);
 
+int		destroy_and_tab_b(t_mlx *so_long);
 int		close_everything_b(t_mlx *so_long);
 void	destroy_so_long_b(t_mlx *so_long);
 

@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:41:41 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/24 19:02:50 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/25 15:36:29 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	destroy_and_tab(t_mlx *so_long)
 	if (!so_long)
 		return (0);
 	destroy_so_long(so_long);
+	free_tab_str(so_long->map);
 	free_tab_str(so_long->map);
 	exit (0);
 }

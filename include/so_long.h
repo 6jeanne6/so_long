@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:53:50 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/24 19:53:40 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/25 15:05:29 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@
 // *          Game assets           *
 // **********************************
 
-# define WALL			"images/xpm/Brique.xpm"
 # define WALL2			"images/xpm/Brique2.xpm"
 
 # define JIGGY			"images/xpm/Collectible-jiggy.xpm"
@@ -60,10 +59,6 @@
 # define RENKO_UP		"images/xpm/Renko_up.xpm"
 
 # define BUSH			"images/xpm/Vegetation_32.xpm"
-# define BUSH2			"images/xpm/Vegetation_35.xpm"
-# define BUSH3			"images/xpm/Vegetation_46.xpm"
-# define BUSH4			"images/xpm/Vegetation_51.xpm"
-# define BUSH5			"images/xpm/Vegetation_55.xpm"
 
 // **********************************
 // *       Structures are cool      *
@@ -80,11 +75,6 @@ typedef struct s_image
 {
 	void	*mlx_img;
 
-	char	*addr;
-
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
 	int		width;
 	int		height;
 
@@ -103,9 +93,6 @@ typedef struct s_exit
 {
 	t_pos		pos;
 
-	t_image		*exit_open;
-	t_image		*exit_close;
-
 	int			all_c;
 
 }				t_exit;
@@ -113,7 +100,6 @@ typedef struct s_exit
 typedef struct s_collectible
 {
 	t_pos		pos;
-	t_image		*jiggy;
 
 	int			**position;
 
@@ -139,7 +125,6 @@ typedef struct s_mlx
 	int			collec_tmp;
 	int			current_i;
 	int			current_j;
-	int 		zeros;
 
 }				t_mlx;
 

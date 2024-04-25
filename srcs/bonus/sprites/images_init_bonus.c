@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:51:16 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/23 18:38:41 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/25 17:59:20 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	load_images_b(t_mlx *so_long)
 	int	i;
 
 	i = -1;
-	while (++i < 13)
+	while (++i < 16)
 	{
 		so_long->img[i] = ft_calloc(1, sizeof(t_image));
 		if (!so_long->img[i])
@@ -124,6 +124,6 @@ void	load_images_b(t_mlx *so_long)
 			EXIT_OPENED, &so_long->img[4]->width, &so_long->img[4]->height);
 	load_images_player_b(so_long);
 	put_images_b(so_long);
-	enemy_sprite(so_long);
+	enemy_jiggy_sprite(so_long);
 }
 //alloc t_image array and load xpm images of bush, wall, jiggy, exit

@@ -6,30 +6,11 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:47:55 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/24 20:04:29 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/25 15:27:57 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void	i_went_everywhere(t_mlx *so_long)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < so_long->row)
-	{
-		j = -1;
-		while (++j < so_long->column)
-		{
-			if (so_long->map_tmp[i][j] == '0')
-				return ;
-		}
-	}
-	so_long->zeros = 1;
-}
-//check if entire map and all path have been checked
 
 static int	fill_exit(t_mlx *so_long, t_pos current)
 {
@@ -38,10 +19,9 @@ static int	fill_exit(t_mlx *so_long, t_pos current)
 		|| so_long->map_tmp[current.x][current.y] == '1'
 		|| so_long->map_tmp[current.x][current.y] == 'A')
 		return (0);
-	so_long->map_tmp[current.x][current.y] = 'A';
-	if (so_long->collec_tmp == 0
-		&& so_long->map_tmp[current.x][current.y] == 'E')
+	if (so_long->map_tmp[current.x][current.y] == 'C')
 		return (1);
+	so_long->map_tmp[current.x][current.y] = 'A';
 	if ((fill_exit(so_long, (t_pos){current.x - 1, current.y}))
 		|| (fill_exit(so_long, (t_pos){current.x + 1, current.y}))
 		|| (fill_exit(so_long, (t_pos){current.x, current.y - 1}))
@@ -64,11 +44,7 @@ static int	fill_collectibles(t_mlx *so_long, t_pos current)
 	if (so_long->map_tmp[current.x][current.y] == 'C')
 		so_long->collec_tmp--;
 	if (so_long->collec_tmp == 0)
-	{
-		i_went_everywhere(so_long);
-		if (so_long->zeros == 1)
-			return (1);
-	}
+		return (1);
 	so_long->map_tmp[current.x][current.y] = 'V';
 	if ((fill_collectibles(so_long, (t_pos){current.x - 1, current.y}))
 		|| (fill_collectibles(so_long, (t_pos){current.x + 1, current.y}))
@@ -101,9 +77,6 @@ static int	create_map_tmp(t_mlx *so_long)
 			destroy_and_tab(so_long);
 		}
 	}
-	i = -1;
-	while (++i < so_long->row)
-		ft_printf ("Line[%d] im map_tmp: %s\n", i, so_long->map_tmp[i]);
 	return (0);
 }
 //creates a duplicate of so_long map
@@ -113,16 +86,8 @@ int	search_path(t_mlx *so_long)
 	create_map_tmp(so_long);
 	if (fill_collectibles(so_long, so_long->p->pos))
 	{
-		int i = -1;
-		while (++i < so_long->row)
-			ft_printf ("Line[%d] im map_tmp after fill_collec: %s\n", i, so_long->map_tmp[i]);
-		if (fill_exit(so_long, so_long->p->pos))
-		{
-			i = -1;
-			while (++i < so_long->row)
-				ft_printf ("Line[%d] im map_tmp after fill_exit: %s\n", i, so_long->map_tmp[i]);
+		if (fill_exit(so_long, so_long->e->pos))
 			return (0);
-		}
 	}
 	free_tab_str(so_long->map_tmp);
 	return (-1);
