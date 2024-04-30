@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:09:45 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/23 19:01:30 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/27 17:28:49 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ static void	so_long_null_b(t_mlx *so_long)
 		so_long->p = NULL;
 	so_long->c = ft_calloc(1, sizeof(t_collec));
 	if (!so_long->c)
-		so_long->c = NULL;
+		destroy_so_long_b(so_long);
 	so_long->e = ft_calloc(1, sizeof(t_exit));
 	if (!so_long->e)
-		so_long->e = NULL;
+		destroy_so_long_b(so_long);
 	so_long->m = ft_calloc(1, sizeof(t_mob));
 	if (!so_long->m)
-		so_long->m = NULL;
+		destroy_so_long_b(so_long);
 }
 //all variables of structure are set to NULL
 
@@ -106,7 +106,7 @@ void	map_init_b(int argc, char **argv, t_mlx *so_long)
 	so_long->map = gnl_and_join_b(so_long, fd);
 	if (so_long->map == NULL || so_long->leak == 1)
 	{
-		free_tab_str_b(so_long->map);
+		free_tab_str_b(so_long->map, so_long);
 		close(fd);
 		message_error_b("Error\nHmm your map is kind of weird\n", so_long);
 	}

@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:10:43 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/25 15:10:31 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/26 15:08:16 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	all_null_b(t_mlx *so_long, t_chara *p, t_collec *c, t_exit *e)
 {
 	if (!p || !c || !e)
 	{
-		free_tab_str_b(so_long->map);
+		free_tab_str_b(so_long->map, so_long);
 		exit(EXIT_FAILURE);
 	}
 	p->pos.x = 0;
@@ -67,7 +67,7 @@ void	map_set_things_b(t_mlx *so_long)
 	so_long->collec_tmp = so_long->collectibles;
 	if (search_path_b(so_long) == -1)
 	{
-		free_tab_str_b(so_long->map);
+		free_tab_str_b(so_long->map, so_long);
 		message_error_b("Error\nYour path is not valid\n", so_long);
 	}
 }

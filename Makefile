@@ -60,8 +60,9 @@ BONUS_SRC 	=	${BONUSDIR}/main_bonus.c \
 				${BONUSDIR}/manage_map/map_path_bonus.c \
 				${BONUSDIR}/manage_map/valid_path_bonus.c \
 				${BONUSDIR}/sprites/images_init_bonus.c \
-				${BONUSDIR}/sprites/enemy_sprites.c \
+				${BONUSDIR}/sprites/enemy_jiggy_sprites.c \
 				${BONUSDIR}/sprites/close_and_free_bonus.c \
+				${BONUSDIR}/sprites/animate.c \
 				${BONUSDIR}/sprites/step_meter.c \
 				${BONUSDIR}/action/move_bonus.c \
 				${BONUSDIR}/action/exit_handle_bonus.c \

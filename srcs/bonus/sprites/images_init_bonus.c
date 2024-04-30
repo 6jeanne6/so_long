@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:51:16 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/25 17:59:20 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/30 14:09:04 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static void	put_images_player_b(t_mlx *so_long, char c)
 				so_long->img[8]->mlx_img, so_long->current_j * 42,
 				so_long->current_i * 42);
 	}
-	else if (c == 'C')
-		mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
-			so_long->img[2]->mlx_img, so_long->current_j * 42,
-			so_long->current_i * 42);
+	// else if (c == 'C')
+	// 	mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
+	// 		so_long->img[2]->mlx_img, so_long->current_j * 42,
+	// 		so_long->current_i * 42);
 }
 //display player according to direction 
 //(see handle keypress) and collectible
@@ -54,6 +54,10 @@ void	put_images_wall_exit_b(t_mlx *so_long, char c)
 	else if (c == 'E' && so_long->e->all_c == 1)
 		mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
 			so_long->img[4]->mlx_img, so_long->current_j * 42,
+			so_long->current_i * 42);
+	else if (c == 'C')
+		mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
+			so_long->img[2]->mlx_img, so_long->current_j * 42,
 			so_long->current_i * 42);
 }
 //display exit according to number of collectibles gathered

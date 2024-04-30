@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:55:46 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/25 17:59:00 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/30 12:29:49 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ typedef struct s_collectible
 	t_pos		pos;
 
 	int			**position;
+	int			got;
 
 }				t_collec;
 
@@ -142,6 +143,8 @@ typedef struct s_mlx
 	int			collec_tmp;
 	int			current_i;
 	int			current_j;
+	int			frame_counter;
+	int			frame_dir;
 
 }				t_mlx;
 
@@ -161,7 +164,7 @@ int		search_path_b(t_mlx *so_long);
 // **********************************
 
 void	message_error_b(char *message, t_mlx *so_long);
-void	free_tab_str_b(char **tab);
+void	free_tab_str_b(char **tab, t_mlx *so_long);
 
 // **********************************
 // *         Game and images        *
@@ -172,7 +175,6 @@ void	put_images_b(t_mlx *so_long);
 void	put_images_wall_exit_b(t_mlx *so_long, char c);
 void	got_exited_b(t_mlx *so_long, char c);
 
-void 	enemy_jiggy_sprite(t_mlx *so_long);
 void	display_steps(t_mlx *so_long);
 
 void	open_exit_b(t_mlx *so_long);
@@ -180,6 +182,14 @@ void	open_exit_b(t_mlx *so_long);
 int		destroy_and_tab_b(t_mlx *so_long);
 int		close_everything_b(t_mlx *so_long);
 void	destroy_so_long_b(t_mlx *so_long);
+
+// **********************************
+// *          Animations            *
+// **********************************
+
+void	enemy_jiggy_sprite(t_mlx *so_long);
+
+int		animate_jiggy(t_mlx *so_long);
 
 // **********************************
 // *           Movements            *

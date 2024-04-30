@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:11:17 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/22 17:19:19 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/26 15:13:27 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	where_is_enemy(t_mlx *so_long)
 	how_many_enemy(so_long);
 	if (how_many_enemy(so_long) == -1)
 	{
-		free_tab_str_b(so_long->map);
+		free_tab_str_b(so_long->map, so_long);
 		message_error_b("Error\nEnemy or not enemy?\n", so_long);
 	}
 }

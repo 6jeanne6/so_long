@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:47:55 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/25 15:28:21 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/26 15:14:12 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	create_map_tmp_b(t_mlx *so_long)
 	int	i;
 
 	i = -1;
-	so_long->map_tmp = ft_calloc(so_long->column, sizeof(char *));
+	so_long->map_tmp = ft_calloc(so_long->row, sizeof(char *));
 	if (!so_long->map_tmp)
 		destroy_and_tab_b(so_long);
 	while (++i < so_long->row)
@@ -91,7 +91,7 @@ int	search_path_b(t_mlx *so_long)
 		if (fill_exit_b(so_long, so_long->e->pos))
 			return (0);
 	}
-	free_tab_str_b(so_long->map_tmp);
+	free_tab_str_b(so_long->map_tmp, so_long);
 	return (-1);
 }
 //process of searching a valid path

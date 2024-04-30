@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:10:08 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/22 17:13:26 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/26 15:04:18 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,17 +109,17 @@ void	map_parsing_b(t_mlx *so_long)
 {
 	if (check_letter_b(so_long) == -1)
 	{	
-		free_tab_str_b(so_long->map);
+		free_tab_str_b(so_long->map, so_long);
 		message_error_b("Error\nCheck the content of your map\n", so_long);
 	}
 	if (browse_map_b(so_long) == -1)
 	{	
-		free_tab_str_b(so_long->map);
+		free_tab_str_b(so_long->map, so_long);
 		message_error_b("Error\nHow much C, E or P?\n", so_long);
 	}
 	if (same_columns_b(so_long) == -1)
 	{	
-		free_tab_str_b(so_long->map);
+		free_tab_str_b(so_long->map, so_long);
 		message_error_b("Error\nCheck the content of your map\n", so_long);
 	}
 }

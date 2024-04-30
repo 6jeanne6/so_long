@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:09:05 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/25 15:38:35 by jewu             ###   ########.fr       */
+/*   Updated: 2024/04/27 17:39:08 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,18 @@
 
 void	destroy_so_long_b(t_mlx *so_long)
 {
+	int	i;
+
+	i = -1;
 	if (!so_long)
 		return ;
 	if (so_long->c)
+	{
+		while (++i < so_long->collectibles)
+			if (so_long->c[i].position)
+				free(so_long->c[i].position);
 		free(so_long->c);
+	}
 	if (so_long->p)
 		free(so_long->p);
 	if (so_long->e)
@@ -27,14 +35,14 @@ void	destroy_so_long_b(t_mlx *so_long)
 }
 //free content of so_long
 
-void	free_tab_str_b(char **tab)
+void	free_tab_str_b(char **tab, t_mlx *so_long)
 {
 	int	i;
 
 	i = -1;
 	if (!tab)
 		return ;
-	while (tab[++i])
+	while (++i < so_long->row)
 		free(tab[i]);
 	free(tab);
 }
