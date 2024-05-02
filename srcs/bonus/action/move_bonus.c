@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   move_bonus.c                                       :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:11:05 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/23 19:06:40 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/01 17:30:22 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	move_right_b(t_mlx *so_long, t_chara *p)
 			return ;
 		if (so_long->map[p->pos.x][p->pos.y + 1] == 'C')
 		{
-			so_long->collectibles--;
-			if (so_long->collectibles == 0)
+			so_long->collec_taken++;
+			if (so_long->collec_taken == so_long->collectibles)
 				open_exit_b(so_long);
 		}
 		if ((so_long->map[p->pos.x][p->pos.y + 1] == 'E'
@@ -47,8 +47,8 @@ void	move_left_b(t_mlx *so_long, t_chara *p)
 			return ;
 		if (so_long->map[p->pos.x][p->pos.y - 1] == 'C')
 		{
-			so_long->collectibles--;
-			if (so_long->collectibles == 0)
+			so_long->collec_taken++;
+			if (so_long->collec_taken == so_long->collectibles)
 				open_exit_b(so_long);
 		}
 		if ((so_long->map[p->pos.x][p->pos.y - 1] == 'E'
@@ -73,8 +73,8 @@ void	move_down_b(t_mlx *so_long, t_chara *p)
 			return ;
 		if (so_long->map[p->pos.x + 1][p->pos.y] == 'C')
 		{
-			so_long->collectibles--;
-			if (so_long->collectibles == 0)
+			so_long->collec_taken++;
+			if (so_long->collec_taken == so_long->collectibles)
 				open_exit_b(so_long);
 		}
 		if ((so_long->map[p->pos.x + 1][p->pos.y] == 'E'
@@ -99,8 +99,8 @@ void	move_up_b(t_mlx *so_long, t_chara *p)
 			return ;
 		if (so_long->map[p->pos.x - 1][p->pos.y] == 'C')
 		{
-			so_long->collectibles--;
-			if (so_long->collectibles == 0)
+			so_long->collec_taken++;
+			if (so_long->collec_taken == so_long->collectibles)
 				open_exit_b(so_long);
 		}
 		if ((so_long->map[p->pos.x - 1][p->pos.y] == 'E'

@@ -63,9 +63,11 @@ BONUS_SRC 	=	${BONUSDIR}/main_bonus.c \
 				${BONUSDIR}/sprites/enemy_jiggy_sprites.c \
 				${BONUSDIR}/sprites/close_and_free_bonus.c \
 				${BONUSDIR}/sprites/animate.c \
+				${BONUSDIR}/sprites/animate_enemy.c \
 				${BONUSDIR}/sprites/step_meter.c \
 				${BONUSDIR}/action/move_bonus.c \
 				${BONUSDIR}/action/exit_handle_bonus.c \
+				${BONUSDIR}/action/enemy_move.c \
 
 SRCS_BONUS 	= 	${BONUS_SRC}
 

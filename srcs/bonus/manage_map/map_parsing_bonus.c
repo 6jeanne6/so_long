@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:10:08 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/26 15:04:18 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/01 18:44:57 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,13 @@ static int	browse_map_b(t_mlx *so_long)
 	{
 		j = -1;
 		while (so_long->map[i][++j])
+		{
 			how_many_letter_b(so_long->map[i][j], &c, &p, &e);
+			if (so_long->map[i][j] == 'M')
+				so_long->mob++;
+		}
 	}
-	if ((c < 1) || (p > 1 || p == 0) || (e > 1 || e == 0))
+	if ((c < 1) || (p > 1 || p == 0) || (e > 1 || e == 0) || (so_long->mob > 1))
 		return (-1);
 	return (1);
 }
@@ -115,7 +119,7 @@ void	map_parsing_b(t_mlx *so_long)
 	if (browse_map_b(so_long) == -1)
 	{	
 		free_tab_str_b(so_long->map, so_long);
-		message_error_b("Error\nHow much C, E or P?\n", so_long);
+		message_error_b("Error\nHow much C, E, P or M?\n", so_long);
 	}
 	if (same_columns_b(so_long) == -1)
 	{	

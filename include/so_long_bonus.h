@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:55:46 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/30 12:29:49 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/02 16:22:16 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # include <fcntl.h> //open
 # include <unistd.h> //close, read
-# include <stdlib.h> //malloc
+# include <stdlib.h> //malloc, rand
 # include <stdio.h> //perror
 # include <string.h> //strerror
 # include <errno.h> //perror
@@ -82,7 +82,6 @@ typedef struct s_position
 typedef struct s_mob
 {
 	t_pos	pos;
-
 	int		mobs;
 
 }				t_mob;
@@ -118,7 +117,6 @@ typedef struct s_collectible
 	t_pos		pos;
 
 	int			**position;
-	int			got;
 
 }				t_collec;
 
@@ -140,11 +138,14 @@ typedef struct s_mlx
 	int			row;
 	int			column;
 	int			collectibles;
+	int			frame_counter;
+	int			mob;
 	int			collec_tmp;
+	int			collec_taken;
 	int			current_i;
 	int			current_j;
-	int			frame_counter;
-	int			frame_dir;
+	int			frame_enemy;
+	int			enemy_direction;
 
 }				t_mlx;
 
@@ -173,6 +174,7 @@ void	free_tab_str_b(char **tab, t_mlx *so_long);
 void	load_images_b(t_mlx *so_long);
 void	put_images_b(t_mlx *so_long);
 void	put_images_wall_exit_b(t_mlx *so_long, char c);
+void	put_images_mob(t_mlx *so_long);
 void	got_exited_b(t_mlx *so_long, char c);
 
 void	display_steps(t_mlx *so_long);
@@ -190,6 +192,7 @@ void	destroy_so_long_b(t_mlx *so_long);
 void	enemy_jiggy_sprite(t_mlx *so_long);
 
 int		animate_jiggy(t_mlx *so_long);
+int		animate_enemy(t_mlx *so_long);
 
 // **********************************
 // *           Movements            *
@@ -201,5 +204,11 @@ void	move_up_b(t_mlx *so_long, t_chara *p);
 void	move_down_b(t_mlx *so_long, t_chara *p);
 void	move_left_b(t_mlx *so_long, t_chara *p);
 void	move_right_b(t_mlx *so_long, t_chara *p);
+
+void	move_enemy(t_mlx *so_long, t_mob *m);
+void	enemy_up(t_mlx *so_long, t_mob *m);
+void	enemy_down(t_mlx *so_long, t_mob *m);
+void	enemy_left(t_mlx *so_long, t_mob *m);
+void	enemy_right(t_mlx *so_long, t_mob *m);
 
 #endif 

@@ -6,20 +6,57 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:06:26 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/30 14:09:50 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/02 19:04:55 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-static void	where_jiggy(t_mlx *so_long)
+static void	where_iz_enemy(t_mlx *so_long)
 {
 	int	i;
 	int	j;
-	int	count;
 
 	i = -1;
+	while (++i < so_long->row)
+	{
+		j = -1;
+		while (++j < so_long->column)
+		{
+			if (so_long->map[i][j] == 'M')
+			{
+				so_long->m->pos.x = i;
+				so_long->m->pos.y = j;
+				mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
+					so_long->img[9]->mlx_img, j * 42, i * 42);
+			}
+		}
+	}
+}
+//localize enemy
+
+static void	set_position(t_mlx *so_long, char c, int *count)
+{
+	if (c == 'C')
+	{
+		so_long->c[*count].pos.x = so_long->current_i;
+		so_long->c[*count].pos.y = so_long->current_j;
+		mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
+			so_long->img[2]->mlx_img, so_long->current_j * 42,
+			so_long->current_i * 42);
+		(*count)++;
+	}
+}
+//set collectible position
+
+static void	where_jiggy(t_mlx *so_long)
+{
+	int			i;
+	int			j;
+	static int	count;
+
 	count = 0;
+	i = -1;
 	if (so_long->c)
 		free(so_long->c);
 	so_long->c = ft_calloc(so_long->collectibles, sizeof(t_collec));
@@ -32,12 +69,9 @@ static void	where_jiggy(t_mlx *so_long)
 		{
 			if (so_long->map[i][j] == 'C')
 			{
-				so_long->c[count].pos.x = i;
-				so_long->c[count].pos.y = j;
-				mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
-					so_long->img[2]->mlx_img, j * 42,
-					i * 42);
-				count++;
+				so_long->current_i = i;
+				so_long->current_j = j;
+				set_position(so_long, so_long->map[i][j], &count);
 			}
 		}
 	}
@@ -75,6 +109,7 @@ int	main(int argc, char **argv)
 	load_images_b(&so_long);
 	hook(&so_long);
 	where_jiggy(&so_long);
+	where_iz_enemy(&so_long);
 	mlx_loop_hook(so_long.mlx_ptr, &animate_jiggy, &so_long);
 	mlx_loop(so_long.mlx_ptr);
 	return (0);

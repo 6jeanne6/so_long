@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:11:25 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/23 18:39:29 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/02 15:58:24 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@ void	got_exited_b(t_mlx *so_long, char c)
 {
 	if (!so_long || !c)
 		return ;
-	if ((c == 'E' && so_long->e->all_c == 1) || c == 'M')
+	if ((c == 'E' && so_long->e->all_c == 1))
 		close_everything_b(so_long);
+	if (c == 'M')
+	{
+		ft_putstr_fd("GAME OVER\n", 1);
+		close_everything_b(so_long);
+	}
 }
 //when player is on open exit, leaves the game
 
@@ -34,7 +39,8 @@ void	open_exit_b(t_mlx *so_long)
 		j = -1;
 		while (++j < so_long->column)
 		{
-			if (so_long->map[i][j] == 'E' && so_long->collectibles == 0)
+			if (so_long->map[i][j] == 'E'
+				&& so_long->collec_taken == so_long->collectibles)
 			{
 				so_long->e->all_c = 1;
 				put_images_wall_exit_b(so_long, so_long->map[i][j]);
