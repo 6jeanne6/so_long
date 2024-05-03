@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:41:41 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/26 15:08:54 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/03 14:38:41 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	destroy_and_tab_b(t_mlx *so_long)
 		return (0);
 	destroy_so_long_b(so_long);
 	free_tab_str_b(so_long->map, so_long);
-	free_tab_str_b(so_long->map, so_long);
+	free_tab_str_tmp(so_long->map_tmp, so_long);
 	exit (0);
 }
 //destroy so_long + free map
@@ -35,7 +35,7 @@ int	close_everything_b(t_mlx *so_long)
 		free(so_long->img[i]);
 	}
 	free_tab_str_b(so_long->map, so_long);
-	free_tab_str_b(so_long->map_tmp, so_long);
+	free_tab_str_tmp(so_long->map_tmp, so_long);
 	mlx_destroy_window(so_long->mlx_ptr, so_long->win_ptr);
 	mlx_destroy_display(so_long->mlx_ptr);
 	free(so_long->mlx_ptr);

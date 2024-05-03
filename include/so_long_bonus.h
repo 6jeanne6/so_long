@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:55:46 by jewu              #+#    #+#             */
-/*   Updated: 2024/05/02 16:22:16 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/03 14:34:57 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ int		search_path_b(t_mlx *so_long);
 
 void	message_error_b(char *message, t_mlx *so_long);
 void	free_tab_str_b(char **tab, t_mlx *so_long);
+void	free_tab_str_tmp(char **tab, t_mlx *so_long);
 
 // **********************************
 // *         Game and images        *

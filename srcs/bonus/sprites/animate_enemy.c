@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 17:15:50 by jewu              #+#    #+#             */
-/*   Updated: 2024/05/02 20:14:19 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/03 14:17:09 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	move_enemy(t_mlx *so_long, t_mob *m)
 	int	direction;
 
 	direction = rand() % 4;
-	ft_printf("Direction: %d\n", direction);
 	if (direction == 1)
 	{
 		so_long->enemy_direction = direction;
@@ -82,29 +81,6 @@ void	move_enemy(t_mlx *so_long, t_mob *m)
 }
 //choose a random direction for mob
 
-// static void	where_iz_enemy(t_mlx *so_long)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = -1;
-// 	while (++i < so_long->row)
-// 	{
-// 		j = -1;
-// 		while (++j < so_long->column)
-// 		{
-// 			if (so_long->map[i][j] == 'M')
-// 			{
-// 				so_long->m->pos.x = i;
-// 				so_long->m->pos.y = j;
-// 				mlx_put_image_to_window(so_long->mlx_ptr, so_long->win_ptr,
-// 					so_long->img[9]->mlx_img, j * 42, i * 42);
-// 			}
-// 		}
-// 	}
-// }
-//localize enemy
-
 int	animate_enemy(t_mlx *so_long)
 {
 	static long	start;
@@ -115,7 +91,6 @@ int	animate_enemy(t_mlx *so_long)
 	time = (double)(now - start) / CLOCKS_PER_SEC;
 	if (time > 0.1)
 	{
-		//where_iz_enemy(so_long);
 		move_enemy(so_long, so_long->m);
 		start = clock();
 	}

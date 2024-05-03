@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:47:55 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/26 15:14:12 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/03 14:37:20 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	search_path_b(t_mlx *so_long)
 		if (fill_exit_b(so_long, so_long->e->pos))
 			return (0);
 	}
-	free_tab_str_b(so_long->map_tmp, so_long);
+	free_tab_str_tmp(so_long->map_tmp, so_long);
 	return (-1);
 }
 //process of searching a valid path
