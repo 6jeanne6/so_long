@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:51:16 by jewu              #+#    #+#             */
-/*   Updated: 2024/05/02 19:41:13 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/03 15:51:42 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	load_images_b(t_mlx *so_long)
 	so_long->img[4]->mlx_img = mlx_xpm_file_to_image(so_long->mlx_ptr,
 			EXIT_OPENED, &so_long->img[4]->width, &so_long->img[4]->height);
 	load_images_player_b(so_long);
-	put_images_b(so_long);
 	enemy_jiggy_sprite(so_long);
+	put_images_b(so_long);
 }
 //alloc t_image array and load xpm images of bush, wall, jiggy, exit

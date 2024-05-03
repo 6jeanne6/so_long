@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:25:24 by jewu              #+#    #+#             */
-/*   Updated: 2024/04/24 18:28:39 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/03 18:28:17 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@ void	destroy_so_long(t_mlx *so_long)
 	}
 }
 //free content of so_long
+
+void	free_tab_str_tmp(char **tab, t_mlx *so_long)
+{
+	int	i;
+
+	i = -1;
+	if (!tab)
+		return ;
+	while (++i < so_long->row)
+		free(tab[i]);
+	free(tab);
+}
+//free array and double array
 
 void	free_tab_str(char **tab)
 {

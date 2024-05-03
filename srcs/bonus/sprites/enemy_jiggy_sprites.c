@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:21:28 by jewu              #+#    #+#             */
-/*   Updated: 2024/05/03 14:15:49 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/03 16:00:57 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	enemy_jiggy_sprite(t_mlx *so_long)
 	loaded = check_images(so_long);
 	if (loaded == -1)
 	{
+		ft_putstr_fd("Error\nYour image is weird\n", 2);
 		close_everything_b(so_long);
 		exit(EXIT_FAILURE);
 	}
