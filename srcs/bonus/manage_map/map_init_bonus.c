@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:09:45 by jewu              #+#    #+#             */
-/*   Updated: 2024/05/03 12:30:55 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/06 15:23:24 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	map_init_b(int argc, char **argv, t_mlx *so_long)
 	so_long_null_b(so_long);
 	if (argc != 2)
 		message_error_b("Error\nHey listen! Only 2 arguments\n", so_long);
-	if (!(ft_strstr(argv[1], ".ber")))
+	if (map_is_ber_bonus(argv[1]) == -1)
 		message_error_b("Error\nPlease use a .ber map\n", so_long);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)

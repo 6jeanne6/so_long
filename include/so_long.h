@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:53:50 by jewu              #+#    #+#             */
-/*   Updated: 2024/05/03 18:21:47 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/06 15:16:00 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ void	map_parsing(t_mlx *so_long);
 void	map_set_things(t_mlx *so_long);
 
 int		search_path(t_mlx *so_long);
+int		map_is_ber(char *argv);
 
 // **********************************
 // *         Error functions        *

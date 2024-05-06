@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   map_ber_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 10:49:49 by jewu              #+#    #+#             */
-/*   Updated: 2024/05/06 16:04:39 by jewu             ###   ########.fr       */
+/*   Created: 2024/05/06 15:21:21 by jewu              #+#    #+#             */
+/*   Updated: 2024/05/06 16:11:18 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "so_long_bonus.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	map_is_ber_bonus(char *argv)
 {
-	size_t	i;
+	int	len;
+	int	i;
 
+	len = ft_strlen(argv);
 	i = 0;
-	while (s1[i] != '\0' && s1[i] == s2[i] && i < n)
+	if (len < 4)
+		return (-1);
+	while (argv[i] != '.')
 		i++;
-	if (i < n)
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-	return (0);
+	if (ft_strncmp(argv + len, ".ber", 4) == 0
+		|| ft_strncmp(argv + i, ".ber", len - i) == 0)
+		return (1);
+	else
+		return (-1);
 }
+//check if argument is a ber map

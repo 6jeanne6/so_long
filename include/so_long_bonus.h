@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:55:46 by jewu              #+#    #+#             */
-/*   Updated: 2024/05/03 14:34:57 by jewu             ###   ########.fr       */
+/*   Updated: 2024/05/06 15:21:56 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ void	where_is_enemy(t_mlx *so_long);
 void	map_set_things_b(t_mlx *so_long);
 
 int		search_path_b(t_mlx *so_long);
+int		map_is_ber_bonus(char *argv);
 
 // **********************************
 // *         Error functions        *

@@ -40,6 +40,7 @@ MLXFLAG 		= -L./${MINILBX_PATH} -lmlx -lXext -lX11 -lm
 SRCDIR 		= srcs
 
 SRC			=	${SRCDIR}/mandatory/main.c \
+				${SRCDIR}/mandatory/manage_map/map_ber.c \
 				${SRCDIR}/mandatory/manage_map/map_init.c \
 				${SRCDIR}/mandatory/manage_map/map_parsing.c \
 				${SRCDIR}/mandatory/manage_map/map_error.c \
@@ -54,6 +55,7 @@ SRC			=	${SRCDIR}/mandatory/main.c \
 BONUSDIR	= 	${SRCDIR}/bonus
 
 BONUS_SRC 	=	${BONUSDIR}/main_bonus.c \
+				${BONUSDIR}/manage_map/map_ber_bonus.c \
 				${BONUSDIR}/manage_map/map_init_bonus.c \
 				${BONUSDIR}/manage_map/map_parsing_bonus.c \
 				${BONUSDIR}/manage_map/map_error_bonus.c \
