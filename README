@@ -1,5 +1,5 @@
 📖 HOW TO USE
 
-1. Download minilibx-linux https://github.com/42Paris/minilibx-linux and rename it `mlx-linux`
-2. Use `make` and `./so_long map/map1.ber`
+1. Download minilibx-linux https://github.com/42Paris/minilibx-linux and rename it ```mlx-linux```
+2. Use `make` and ```./so_long map/map1.ber```
 3. For bonus, use make bonus and `./so_long_bonus map_bonus/bonus1.ber`
